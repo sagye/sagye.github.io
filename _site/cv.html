@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CV | Sagy Ephrati</title>
+  <link rel="stylesheet" href="/academic-website/assets/style.css">
+</head>
+
+<!-- Load MathJax -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body>
+  <div>
+    <header padding: 1em 0;">
+	<div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 1em;">
+      <h1>Sagy Ephrati</h1>
+      <nav>
+        <a href="/academic-website/">Home</a>
+        <a href="/academic-website/notes.html">Notes</a>
+        <a href="/academic-website/publications.html">Publications</a>
+        <a href="/academic-website/cv.html">CV</a>
+        <a href="/academic-website/contact.html">Contact</a>
+        <button id="theme-toggle" style="
+        position: fixed;
+        top: 1em;
+        right: 1em;
+	padding: 0.5em 1.2em;
+	border: none;
+	border-radius: 6px;
+	background-color: #003366;
+	color: #ffffff;
+	font-size: 0.9rem;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	z-index: 1000;
+	">
+	🌓
+        </button>
+      </nav>
+</div>
+
+
+    </header>
+
+    <main style="max-width: 800px; margin: 2em auto; padding: 0 1em;">
+      <h2 id="curriculum-vitae">Curriculum Vitae</h2>
+
+<p>You can download my full CV <a href="assets/CV.pdf">here</a>.</p>
+
+<h3 id="current-affiliation">Current affiliation</h3>
+<p>Chalmers University of Technology and University of Gothenburg<br />
+Department of Mathematical Sciences
+Chalmers Tvärgata 3 <br />
+SE-412 96 Gothenburg<br />
+Sweden</p>
+
+
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <p><strong>Sagy Ephrati</strong><br>
+          sagy@chalmers.se</p>
+        </div>
+        <div class="footer-right">
+          <p>
+            <a href="https://scholar.google.com/citations?user=JSh4h2YAAAAJ&hl=nl" target="_blank">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/sagy-ephrati-20a6b1108/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/sagye?tab=repositories" target="_blank">GitHub</a>
+          </p>
+        </div>
+      </div>
+      <p>&copy; 2025 Sagy Ephrati. Powered by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+    </footer>
+
+  </div>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Load previous preference
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme',
+      body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+</script>
+
+</body>
+</html>

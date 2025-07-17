@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A brief derivation of the Kalman filter | Sagy Ephrati</title>
+  <link rel="stylesheet" href="/academic-website/assets/style.css">
+</head>
+
+<!-- Load MathJax -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body>
+  <div>
+    <header padding: 1em 0;">
+	<div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 1em;">
+      <h1>Sagy Ephrati</h1>
+      <nav>
+        <a href="/academic-website/">Home</a>
+        <a href="/academic-website/notes.html">Notes</a>
+        <a href="/academic-website/publications.html">Publications</a>
+        <a href="/academic-website/cv.html">CV</a>
+        <a href="/academic-website/contact.html">Contact</a>
+        <button id="theme-toggle" style="
+        position: fixed;
+        top: 1em;
+        right: 1em;
+	padding: 0.5em 1.2em;
+	border: none;
+	border-radius: 6px;
+	background-color: #003366;
+	color: #ffffff;
+	font-size: 0.9rem;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	z-index: 1000;
+	">
+	🌓
+        </button>
+      </nav>
+</div>
+
+
+    </header>
+
+    <main style="max-width: 800px; margin: 2em auto; padding: 0 1em;">
+      <h1 id="a-brief-derivation-of-the-kalman-filter">A brief derivation of the Kalman filter</h1>
+
+<p>The Kalman filter is a well-known data assimilation method. It is an algorithm that includes the observation optimally to improve the estimate of the true process. We assume linear dynamics of the true model, a linear observation model, and Gaussian process noise and observation noise.
+While these simplifying assumptions sound restrictive, it permits the derivation of a closed form solution. This serves as a first step to more intricate data assimilation methods.</p>
+
+<p>We start by describing the linear dynamics and illustrate some probabilistic properties of these dynamics. We then move on the Kalman filter, where we make use of <em>Bayesian inference in linear models with Gaussian noise</em>.</p>
+
+<h3 id="discrete-time-linear-dynamics">Discrete-time linear dynamics</h3>
+<p><em>Based on Example 4.6 from “Probabilistic forecasting and Bayesian data assimilation”.</em></p>
+
+<p>Consider a linear evolution equation in discrete time, \begin{equation}
+    z^{n+1} = Fz^n + B + \Xi^n,
+\end{equation}
+where the superscripts indicate the time level. 
+Here, $z^n\in\mathbb{R}^{N_z}$, $F\in\mathbb{R}^{N_z\times N_z}$ is a matrix describing how the state $z^n$ transitions to $z^n+1$, $B\in\mathbb{R}^{N_z}$ denotes additional input in the state evolution, and $\Xi^n$ is process noise.</p>
+
+<p>This evolution equation is accompanied by a linear observation model (or forward model) \begin{equation}
+    y^n = H z^n + \Sigma^n,
+\end{equation}
+where $ H\in \mathbb{R}^{N_y \times N_z}$ is the forward map, and $\Sigma^n$ is measurement noise. The values of $y^n$ are observations of the true dynamics $z^n$. Depending on the entries of $H$, these can be partial or full observations of $z^n$.</p>
+
+<p>For the derivation of the Kalman filter, we assume linear dynamics and a linear forward map $H$.
+With the dynamical model and the observation model in place, the filtering problem is the following: given observations $y^0, \ldots, y^n$, estimate $z^n$.</p>
+
+<h3 id="noise-processes">Noise processes</h3>
+<p>The noise processes ${\Xi^n }, ~{ \Sigma^n }$ are assumed to be Gaussian processes with mean zero and covariance matrices $Q$ and $R$, respectively. In other words,</p>
+
+\[\begin{split}
+    &amp;\mathbb{E}[\Xi^n] = 0 = \mathbb{E}[\Sigma^n], \\
+    &amp; \mathbb{E}\left[\Xi^n (\Xi^k)^T\right] = \delta_{nk} Q, \\
+    &amp; \mathbb{E}\left[\Sigma^n (\Sigma^k)^T\right] = \delta_{nk} R.
+    \end{split}\]
+
+<p>The noise processes are also uncorrelated to the states $z^n$, $y^n$, a property which will simplify our derivations below.</p>
+
+<h3 id="evolution-of-mean-and-covariance">Evolution of mean and covariance</h3>
+<p>The initial system state is assumed to be Gaussian, fully described by the mean and covariance. We take
+\begin{align}
+    \begin{split}
+        &amp;\mathbb{E}[z^0] = \bar{z}^0, <br />
+        &amp;\mathbb{E}[(z^0 - \bar{z}^0)(z^0 - \bar{z}^0)^T] = P^0.
+    \end{split}
+\end{align}
+We now show how the mean and the covariance evolve under the linear dynamics. We will repeatedly use the linearity of the expectation $\mathbb{E}[\cdot]$ and the independence of the noise process.</p>
+
+<p>For the mean $\bar z^{n+1}$, we find \begin{equation}
+    \bar z^{n+1} = \mathbb{E}[z^{n+1}] = \mathbb{E}[F z^n + B^n + \Xi^n] = F \bar{z}^n + B^n.
+\end{equation}
+This also shows us that $z^{n+1} - \bar z^{n+1} = F(z^n - \bar z^n) + \Xi^n$, which comes in handy for the covariance evolution.
+The evolution of the covariance follows from</p>
+
+\[\begin{split}
+    P^{n+1}&amp;=\mathbb{E}\left[(z^{n+1} - \bar{z}^{n+1})(z^{n+1} - \bar{z}^{n+1})^T\right] \\&amp;= \mathbb{E}\left[\left(F(z^n - \bar z^n) + \Xi^n\right)\left(F(z^n - \bar z^n) + \Xi^n\right)^T\right] \\
+    &amp; = \mathbb{E}\left[F(z^n - \bar z^n)(z^n - \bar z^n)^T F^T\right] + \mathbb{E}\left[\Xi^n(\Xi^n)^T\right] \\
+    &amp; = F P^n F^T + Q.
+\end{split}\]
+
+<p>Similarly, we can derive the evolution of the mean and covariance of $y$. We have \begin{equation}
+        \bar y^{n+1} = \mathbb{E}[y^{n+1}] = \mathbb{E}[H z^n + \Sigma^n] = H \bar{z}^n 
+\end{equation}
+for the mean and \begin{equation}
+        \mathrm{cov}(y^n, y^n) = \mathbb{E}\left[\left(H(z^n - \bar{z}^n) + \Sigma^n\right)\left(H(z^n - \bar{z}^n) + \Sigma^n\right)^T\right] = H P^n H^T + R
+\end{equation}
+for the covariance.</p>
+
+<h2 id="the-kalman-filter">The Kalman filter</h2>
+<p><em>Based on Section 6.1 of “Probabilistic forecasting and Bayesian data assimilation”.</em></p>
+
+<h3 id="derivation">Derivation</h3>
+<p>The mean and covariance are propagated over one or more time steps via the linear dynamics. The propagated mean and variance define a multivariate normal distribution, which we will call the forecast pair $(\bar z^f, P^f)$. Note that the superscript will be used to distinguish between the forecast and analysis pairs; it does not indicate a time instance now.</p>
+
+<p>We assume now that we have arrived at the point in time when a new observation becomes available. The Kalman filter provides an algorithm to transform incorporate this observation into the forecast pair and, in doing so, compute the analysis pair.</p>
+
+<p>The observation is denoted by $y_\mathrm{obs}$ and recall that $y_\mathrm{obs}\sim\mathcal{N}(H\bar z^f, R)$. Substituting this into the posterior update for linear dynamics and normally distribution noise (see <a href="/academic-website/2025/06/17/bayesian-inference.html">Bayesian inference</a>), 
+we obtain the analysis pair $(\bar z^a, P^a)$,</p>
+
+\[\begin{split}
+    \bar z^a &amp;= \bar z^f - P^a H^TR^{-1}(H\bar z^f-y_\mathrm{obs}), \\
+    P^a &amp;= ((P^f)^{-1} + H^T R^{-1} H)^{-1}.
+\end{split}\]
+
+<p>The equation for the analysis covariance still needs some work. Using the <a href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity">Woodbury matrix identity</a>,
+this can be rewritten to \begin{equation}
+    \begin{split}
+        P^a &amp;= P^f - P^fH^T(R+HP^fH^T)^{-1}HP^f <br />
+        &amp; = P^f - KHP^f.
+    \end{split}
+\end{equation}
+The last step introduced a matrix $K$. This is the <em>Kalman gain matrix</em> defined as \begin{equation}
+    K = P^fH^T(R+HP^fH^T)^{-1},
+\end{equation}
+This matrix tells us how strongly the forecast pair should be corrected based on the observation. The update for the mean can also be written using $K$, which highlights the correction strength (innovation): \begin{equation}
+    \bar z^a = \bar z^f - K\underbrace{(H\bar z^f - y_\mathrm{obs})}_{-\text{innovation}}.
+\end{equation}</p>
+
+<h3 id="posterior-update-algorithm">Posterior update algorithm</h3>
+<p>Summarizing, the Kalman filter transforms the prior to the posterior in to simple steps when a new observation becomes available. Using the notation introduced above, these steps are:</p>
+<ol>
+  <li>Compute the Kalman gain matrix,</li>
+</ol>
+
+\[K = P^fH^T(R+HP^fH^T)^{-1};\]
+
+<ol>
+  <li>Update the mean and covariance</li>
+</ol>
+
+\[\begin{split} z^a &amp;= \bar z^f - K(H\bar z^f - y_\mathrm{obs}), \\
+    P^a &amp;= P^f - KHP^f. \end{split}\]
+
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <p><strong>Sagy Ephrati</strong><br>
+          sagy@chalmers.se</p>
+        </div>
+        <div class="footer-right">
+          <p>
+            <a href="https://scholar.google.com/citations?user=JSh4h2YAAAAJ&hl=nl" target="_blank">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/sagy-ephrati-20a6b1108/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/sagye?tab=repositories" target="_blank">GitHub</a>
+          </p>
+        </div>
+      </div>
+      <p>&copy; 2025 Sagy Ephrati. Powered by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+    </footer>
+
+  </div>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Load previous preference
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme',
+      body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+</script>
+
+</body>
+</html>

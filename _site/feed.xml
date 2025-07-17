@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/academic-website/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/academic-website/" rel="alternate" type="text/html" /><updated>2025-07-10T11:21:53+02:00</updated><id>http://localhost:4000/academic-website/feed.xml</id><title type="html">Sagy Ephrati</title><subtitle>Homepage of Sagy Ephrati</subtitle><entry><title type="html">Normal coordinates on a Riemannian manifold</title><link href="http://localhost:4000/academic-website/2025/06/26/normal-coordinates.html" rel="alternate" type="text/html" title="Normal coordinates on a Riemannian manifold" /><published>2025-06-26T00:00:00+02:00</published><updated>2025-06-26T00:00:00+02:00</updated><id>http://localhost:4000/academic-website/2025/06/26/normal-coordinates</id><content type="html" xml:base="http://localhost:4000/academic-website/2025/06/26/normal-coordinates.html"><![CDATA[<h1 id="normal-coordinates">Normal coordinates</h1>
+
+<p>Working on a tangent space is generally straightforward: tangent spaces are linear and this simplifies many things. Working on manifolds can be more complicated: manifolds can be curved, and the standard notions of addition and subtraction may no longer work.</p>
+
+<p>Today, we’ll look at normal coordinates. These coordinates allow us to translate perturbation in $\mathbb{R}^m$ to perturbations on our manifold, and provide some sort of addition and subtraction.
+Normal coordinates are constructed via the Riemannian exponential map: we can move around the tangent space and then map this movement to the manifold via the Riemannian exponential. This naturally means that the normal coordinates depend on the exponential, and therefore, on the geodesics (or alternatively: on the the affine connection or the Riemannian metric).</p>
+
+<p>We define the construction of normal coordinates below and show a quick example on the orthonormal group $O(3)$.</p>
+
+<h3 id="normal-coordinates-on-a-surface">Normal coordinates on a surface</h3>
+<p><em>See Section 10.3 in <a href="#1">[1]</a>,  for a detailed explanation of normal coordinates on a two-dimensional surface.</em></p>
+
+<p>Let $p$ be a point on a Riemannian surface $M^2$, and let
+$\mathbf{e}, \mathbf{f}$ be an orthonormal frame at $p$. The map</p>
+
+\[(x,y) \in \mathbb{R}^2 \mapsto \Phi(x,y) := \exp_p(x\mathbf{e} + y\mathbf{f}) \in M\]
+
+<p>is a diffeomorphism of some neighborhood $0$ in $\mathbb{R}^2$ onto some
+neighborhood of $p$ in $M$. Namely, we have the differential $\Phi_*$ at
+$0$:</p>
+
+\[\left.\frac{\partial}{\partial x}\right|_{(x,y) = 0}\! \Phi(x,y) = \left. \frac{\partial}{\partial x} \right|_{x=0} \exp_p(x\mathbf{e}) = \mathbf{e} \implies \Phi_*\left(\frac{\partial}{\partial x}\right)=\mathbf{e},\]
+
+<p>and similarly
+$\Phi_*\left(\frac{\partial}{\partial y}\right) = \mathbf{f}$. Hence,
+$\Phi$ is a local diffeo and $(x,y)$ map to local coordinates near
+$p$. These are the <strong>normal coordinates</strong> with origin $p$.</p>
+
+<p>This formulation can also be extended to higher-dimensional Riemannian
+surfaces $M$. We let $T_pM$ be the $n$-dimensional tangent space at $p$.
+The normal coordinates are defined in $M$ but are parametrized by
+coordinates in $\mathbb{R}^n$. Hence, we require an isomorphism from a
+neighborhood $0$ in $\mathbb{R}^n$ onto the tangent space $T_pM$,</p>
+
+\[E_p: \mathbb{R}^n\to T_pM,\]
+
+<p>for example defined by any basis of the
+tangent space. We furthermore require the Riemannian exponential</p>
+
+\[\exp_p: T_pM\supset V\to M,\]
+
+<p>where $V$ is an open neighborhood in
+$T_pM$ containing $0$.</p>
+
+<p>The coordinates in $\mathbb{R}^m$ can then be used to define local
+coordinates in $M$ near $p$, via the composite mapping</p>
+
+\[\Phi_p:= \exp_p \circ~E_p: \mathbb{R}^n\to U\subset M.\]
+
+<p>Note that we introduced an open subset $U\subset M$. The exponential map is only a
+local diffeomorphism, and $U$ is defined precisely such that $\exp_p$
+remains a diffeomorphism between $U$ and $V$. Note that $U$ depends on
+$p$ and we should technically write $U_p$. Normal coordinates are
+typically written using the inverse of $\Phi$, so we’ll give it a
+special character $\varphi$,</p>
+
+\[\varphi_p:=\Phi_p^{-1} = E_p^{-1}\circ\exp_p^{-1}: U\to\mathbb{R}^n.\]
+
+<h3 id="example-o3">Example: $O(3)$</h3>
+
+<p>We consider the orthonormal group
+$O(3)=\{X\in \mathrm{GL}(3) : X^T X = XX^T = I\}$.</p>
+
+<p>Recall that the general linear group $\mathrm{GL}(3)$ consists of all
+$3\times 3$ invertible matrices. The tangent space at $X$ is defined as</p>
+
+\[T_XO(3) = \left\{X\xi^T|\xi^T+\xi=0\right\},\]
+
+<p>or we could say that
+$\xi\in\mathfrak{so}(3)$. We adopt the Riemannian metric
+$g_X(X\xi, X\eta) = \mathrm{Tr}(\xi^T\eta)$, where
+$\xi,\eta\in\mathfrak{so}(3)$. The Riemannian exponential is defined as</p>
+
+\[\begin{split}
+    \exp_X: &amp;~T_XO(3)\to O(3) \\
+    &amp;~X\xi\mapsto X\mathrm{Exp}(\xi),
+\end{split}\]
+
+<p>where $\mathrm{Exp}(\cdot)$ is the matrix exponential.</p>
+
+<h4 id="normal-coordinates-1">Normal coordinates</h4>
+
+<p>The tangent space is three-dimensional, and we will construct an
+isomorphism between $\mathbb{R}^3$ and $T_X O(3)$ via the hat map. The
+hat map is itself an isomorphism between $\mathbb{R}^3$ and
+$\mathfrak{so}(3)$:</p>
+
+\[\begin{split}
+    \hat\cdot: &amp;~ \mathbb{R}^3\to\mathfrak{so}(3) \\
+    &amp;~\widehat{(x, y, z)} \mapsto\begin{bmatrix}
+        0 &amp; -z &amp; y \\ z &amp; 0 &amp; -x \\ -y &amp; x &amp; 0
+    \end{bmatrix}.
+\end{split}\]
+
+<p>Subsequently, we define $E_X:\mathbb{R}^3\to T_XO(3)$ as
+$E_X(x, y, z)=X\widehat{(x, y, z)}$. The exponential mapping was already
+defined previously.</p>
+
+<p>Combining all terms, we have
+\(\Phi_X(x, y, z) = X\mathrm{Exp}(\widehat{(x, y, z)}),\) which tells us
+how $x, y, z$ translate to local coordinates in $M$ near $X$.</p>
+
+<h4 id="boxplus-and-boxminus">Boxplus and boxminus</h4>
+
+<p>Using normal coordinates, perturbations in $\mathbb{R}^n$ can be
+translated to perturbations on $M$. This is achieved by defining two
+operations, <em>boxplus</em> $\boxplus$ and <em>boxminus</em> $\boxminus$
+<a href="#2">[2]</a>, which are a generalization of classical
+addition and subtraction. We let $p, q\in M$ and $u\in\mathbb{R}^n$. We
+have</p>
+
+\[\begin{split}
+        \boxplus:&amp;~M\times \mathbb{R}^n \to M ,\\
+        &amp;~(p, u) \mapsto p \boxplus u = \Phi_p(u);\\
+        \boxminus:&amp;~M\times M\to\mathbb{R}^n, \\
+        &amp;~(q, p) \mapsto q \boxminus p = \varphi_p(q).
+    \end{split}\]
+
+<p>The $\boxplus$ indicates how a perturbation in $\mathbb{R}^{n}$
+translates to a perturbation on the manifold, via the normal
+coordinates. The $\boxminus$ shows the opposite: given two points on the
+manifold and the normal coordinates, to which perturbation in
+$\mathbb{R}^n$ does this correspond?</p>
+
+<p>For $O(3)$, we can use the above definition of $\Phi$ and its inverse to
+define the $\boxplus$ and $\boxminus$. This requires the matrix
+logarithm $\mathrm{Log}(\cdot) = \mathrm{Exp}^{-1}(\cdot)$ and the
+inverse $\check\cdot$ of the hat map $\hat\cdot$.</p>
+
+<p>We let $X, Y\in O(3)$ and $u=(u_1, u_2, u_3)\in \mathbb{R}^3$. We thus
+find</p>
+
+\[\begin{split}
+        X \boxplus u &amp;= \Phi_X(u) = X\mathrm{Exp}(\hat u), \\
+        Y \boxminus X &amp;= \varphi_X(Y) = \check{}~\mathrm{Log}(X^T Y).
+    \end{split}\]
+
+<p>(Note the $\check\cdot$ in the last equation; the formatting didn’t work out. It acts on the logarithm.)</p>
+
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a> 
+Frankel, T. (2011). The geometry of physics: an introduction. Cambridge university press.</p>
+
+<p><a id="2">[2]</a> 
+Hertzberg, C. A Framework for Sparse, Non-Linear Least Squares Problems on Manifolds.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Normal coordinates]]></summary></entry><entry><title type="html">The ensemble Kalman filter</title><link href="http://localhost:4000/academic-website/2025/06/19/ensemble-kalman-filter.html" rel="alternate" type="text/html" title="The ensemble Kalman filter" /><published>2025-06-19T00:00:00+02:00</published><updated>2025-06-19T00:00:00+02:00</updated><id>http://localhost:4000/academic-website/2025/06/19/ensemble-kalman-filter</id><content type="html" xml:base="http://localhost:4000/academic-website/2025/06/19/ensemble-kalman-filter.html"><![CDATA[<h1 id="the-ensemble-kalman-filter">The ensemble Kalman filter</h1>
+
+<p>The standard Kalman filter yields an algorithm that transforms a
+Gaussian forecast pair $(\bar z^f, P^f)$ to an analysis pair
+$(\bar z^a, P^a)$, under the assumption of a linear model subject to
+Gaussian noise. A general approach to transform empirical forecast PDFs
+to analysis PDFs is particle filtering. The downside to this is that
+computational costs can grow quickly when many particles are used to
+approximate the empirical PDFs. The ensemble Kalman filter (EnKF) sits
+somewhere in the middle, and has become a popular tool for state
+estimation in high-dimensional physics problems. Its suitability for
+high-dimensional nonlinear problems stems from the fact that the
+covariance matrix is not propagated, but is instead computed empirically
+from an ensemble.</p>
+
+<p>For full details, see, e.g.,
+<a href="#1">[1]</a>, <a href="#2">[2]</a>.</p>
+
+<p>We outline the EnKF below.</p>
+
+<h3 id="model-formulation">Model formulation</h3>
+
+<p>We consider a discrete-time system with nonlinear dynamics,</p>
+
+\[\begin{split}
+        z^{n+1} &amp;= f(z^n) + \Xi^n, \\
+        y^n &amp;= h(z^n) + \Sigma^n. 
+    \end{split}\]
+
+<p>Here, $z^n$ denotes the system state at time instance
+$n$, $y^n$ denotes the corresponding measurement, and $\Xi^n$ and
+$\Sigma^n$ are independent zero-mean multivariate Gaussian processes
+with covariance matrices $Q$ and $R$, respectively.</p>
+
+<h3 id="forecast-and-analysis">Forecast and analysis</h3>
+
+<p>Rather than relying on an exact covariance matrix, as in the traditional
+Kalman filter, or sigma points, as in the unscented Kalman filter, the
+Ensemble Kalman Filter (EnKF) employs a Monte Carlo method to estimate
+forecast and analysis statistics. This is achieved by considering an
+ensemble approach in both the forecast and the analysis.</p>
+
+<p>We assume that, at some time instance, we have obtained a forecast
+ensemble of size $q$:</p>
+
+\[Z^{f} = \left(z^{f}_{1}, z^{f}_{2}, \ldots, z^{f}_{q}\right)\]
+
+<p>where $z^{f}_{i}$ is the $i^\mathrm{th}$ ensemble member.</p>
+
+<p>The true state and covariance are not known, hence we approximate the
+statistics based on the available ensemble data. We do so as</p>
+
+\[\begin{split}
+\bar{z}^{f} &amp;= \frac{1}{q} \sum_{i=1}^{q} z^{f}_{i}, \\
+P^{f} &amp; = \frac{1}{q-1} \sum_{i=1}^{q} \left(z^{f}_{i} - \bar{z}^{f} \right) \left(z^{f}_{i} - \bar{z}^{f} \right)^{T}.
+\end{split}\]
+
+<p>The underlying assumption is that the forecast ensemble
+mean is the best forecast estimate of the state and that the ensemble
+spread describes the error between the best forecast and the actual
+state.</p>
+
+<p>The analysis step is also formulated in terms of ensembles. The
+observation ensemble must have mean equal to $y_{\text{obs}}$ and
+covariance equal to $R$,</p>
+
+\[y_{\mathrm{obs}, i} = y_{\text{obs}} + \epsilon_{i}, \quad \epsilon_{i} \sim \mathcal{N}(0, R)\]
+
+<p>The actual analysis then acts on each ensemble member as</p>
+
+\[z^{a}_{i} = z^{f}_{i} + K \left(y_{\text{obs}, i} - h(z^{f}_{i}) \right),\]
+
+<p>where $K$ is the classical Kalman gain determined by the approximations
+of the covariances as</p>
+
+\[K = P^{f}_{zy} \left(P^{f}_{yy}\right)^{-1}.\]
+
+<p>Here, the covariance approximations are given by</p>
+
+\[\begin{split}
+P^{f}_{zy} &amp;= \frac{1}{q-1} \sum_{i=1}^{q} \left(z^{f}_{i} - \bar{z}^{f} \right) \left(y^{f}_{i} - \bar{y}^{f} \right)^{T}, \\ 
+P^{f}_{yy} &amp;= \frac{1}{q-1} \sum_{i=1}^{q} \left(y^{f}_{i} - \bar{y}^{f} \right) \left(y^{f}_{i} - \bar{y}^{f} \right)^{T},
+\end{split}\]
+
+<p>where $y_i^f = h(z_i^f)$.</p>
+
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a> 
+Evensen, G. (2003). The ensemble Kalman filter: Theoretical formulation and practical implementation. Ocean dynamics, 53, 343-367.</p>
+
+<p><a id="2">[2]</a> 
+Gillijns, S., Mendoza, O. B., Chandrasekar, J., De Moor, B. L. R., Bernstein, D. S., &amp; Ridley, A. (2006, June). What is the ensemble Kalman filter and how well does it work?. In 2006 American control conference (pp. 6-pp). IEEE.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[The ensemble Kalman filter]]></summary></entry><entry><title type="html">The Kalman filter: standard, extended, unscented</title><link href="http://localhost:4000/academic-website/2025/06/18/kalman-filter-extended-unscented.html" rel="alternate" type="text/html" title="The Kalman filter: standard, extended, unscented" /><published>2025-06-18T00:00:00+02:00</published><updated>2025-06-18T00:00:00+02:00</updated><id>http://localhost:4000/academic-website/2025/06/18/kalman-filter-extended-unscented</id><content type="html" xml:base="http://localhost:4000/academic-website/2025/06/18/kalman-filter-extended-unscented.html"><![CDATA[<h1 id="the-kalman-filter-standard-extended-unscented">The Kalman filter: standard, extended, unscented</h1>
+
+<p>Now we’ll have a look at some extensions to the Kalman filter.
+Specifically, we will introduce the extended Kalman filter (EKF) and the
+unscented Kalman filter (UKF). Let’s first recap the standard Kalman
+filter.</p>
+
+<h2 id="the-kalman-filter">The Kalman filter</h2>
+
+<h3 id="model-formulation">Model formulation</h3>
+
+<p>Recall the discrete-time linear dynamics subject to Gaussian noise,
+\(z^{n+1} = Fz^n + B + \Xi^n.\) Here $F$ and $B$ describe how the state
+$z$ transitions from one time instance to the next, and $\Xi^n$ is
+(multivariate) Gaussian process noise with mean zero and covariance
+matrix $Q$.</p>
+
+<p>The forward (observation) model is also assumed to be linear and subject
+to noise: \(y^n = Hz^n + \Sigma^n,\) where $H$ is an appropriately sized
+matrix and $\Sigma$ and is a (multivariate) Gaussian process with mean
+zero and covariance matrix $R$.</p>
+
+<h3 id="forecast-and-analysis">Forecast and analysis</h3>
+
+<p>Simulating the dynamics of this system and incorporating measurements
+consists of two steps: i) predict (or <em>forecast</em>), and ii) update (or
+<em>analysis</em>).</p>
+
+<ol>
+  <li>
+    <p>The prediction step takes place whenever no new observations are
+available. For the linear case with Gaussian noise, we the mean
+state and the covariance evolved as follows:</p>
+
+\[\begin{aligned}
+        \text{Mean state:} \quad &amp; \bar z^{n+1} = F\bar{z}^n + B, \\
+        \text{Covariance:} \quad &amp; P^{n+1} = F P^n F^T + Q.    
+\end{aligned}\]
+  </li>
+  <li>
+    <p>The update step takes place when new observations become available.
+Let’s say this happens after computing $\bar z^n$ and $P^n$. Then,
+$(\bar z^n, P^n)$ will be our forecast pair, and we’ll denote these
+by $(\bar z^f, P^f)$ for now. An observation $y_\mathrm{obs}$ of the
+true signal then allows us to transform the forecast pair into an
+analysis pair $(\bar z^a, P^a)$ by applying the Kalman filter:</p>
+
+\[\begin{aligned}
+        \text{Innovation:} \quad &amp; x = y_\mathrm{obs} - H \bar z^f, \\
+        \text{Innovation covariance:} \quad &amp; S = H P^f H^T + R, \\
+\text{Kalman gain:} \quad &amp; K = P^f H^T S^{-1}, \\
+\text{Updated state:} \quad &amp; \bar z^a = \bar z^f + Kx, \\
+\text{Updated covariance:} \quad &amp; P^a = (I - K H) P^f.
+\end{aligned}\]
+  </li>
+</ol>
+
+<p>It’s good to keep in mind that $P^f$ and $P^a$ (in the update step) are
+defined at the same point in time. The analysis pair can then be used to
+predict the state and covariance at the next time instance.</p>
+
+<p>That’s all there is for the Kalman filter: it’s a clean, <em>optimal</em>
+algorithm for linear models subject to additive Gaussian noise. But what
+if the evolution of the true state is nonlinear? The extended Kalman
+filter (EKF) can then be used instead.</p>
+
+<h2 id="the-extended-kalman-filter">The extended Kalman filter</h2>
+
+<p>Many real-world problems are described by nonlinear equations. In such
+cases, the assumptions underlying the standard Kalman filter no longer
+apply. Different methods should then be used to accurately incorporate
+observations into predictions. The extended Kalman filter (EKF) is a
+popular method that does just that.</p>
+
+<h3 id="model-formulation-1">Model formulation</h3>
+
+<p>Our discrete-time dynamics is now no longer assumed to be linear.
+Instead, we write</p>
+
+\[\begin{split}
+        z^{n+1} = f(z^n) + \Xi^n, \\
+        y^n = h(z^n) + \Sigma^n,
+    \end{split}\]
+
+<p>where $f$ and $h$ are differentiable functions. The
+properties of $\Xi$ and $\Sigma$ are the same as before.</p>
+
+<h3 id="forecast-and-analysis-1">Forecast and analysis</h3>
+
+<p>Predicting the state at time level $n+1$ is straightforward: simply
+compute $f(z^n)$. Predicting the covariance $P^{n+1}$ is more difficult,
+and we have to linearize the dynamics $f$ instead to approximate the
+covariance at the new time level. This is achieved via linearization,
+using the Jacobian as an approximation of the true dynamics.</p>
+
+<p>The forecast and analysis steps in the EKF are as follows.</p>
+
+<ol>
+  <li>
+    <p>The prediction relies on the nonlinear dynamics for the state
+estimate and linearized dynamics for the covariance. Note that the
+linearized state transition is evaluated at $z^n$.</p>
+
+\[\begin{aligned}
+        \text{State:} \quad &amp; z^f = f(z^n), \\
+        \text{Linearized state transition:} \quad &amp; F = \frac{\partial f}{\partial z}\Big|_{z^n}\\
+        \text{Covariance:} \quad &amp; P^f = F P^n F^T + Q.
+\end{aligned}\]
+  </li>
+  <li>
+    <p>The update is similar to that of the Kalman filter, but again relies
+on linearized dynamics on certain places. The linearized observation
+is evaluated at $z^f$</p>
+
+\[\begin{aligned}
+        \text{Innovation:} \quad &amp; x = y_\mathrm{obs} - h(z^f), \\
+        \text{Linearized observation:}\quad  &amp; H = \frac{\partial h}{\partial x}\Big|_{z_f}\\
+        \text{Innovation covariance:} \quad &amp; S = H P^f H^T + R, \\
+    \text{Kalman gain:} \quad &amp; K = P^f H^T S^{-1}, \\
+    \text{Updated state:} \quad &amp;  z^a =  z^f + Kx, \\
+    \text{Updated covariance:} \quad &amp; P^a = (I - K H) P^f.
+\end{aligned}\]
+  </li>
+</ol>
+
+<p>The Kalman gain is now no longer optimal, owing to the approximate
+evolution of the covariance. As a result of the linearization, errors in
+the state estimate might grow if above a certain threshold - possibly
+leading to divergent predictions.</p>
+
+<h2 id="the-unscented-kalman-filter">The unscented Kalman filter</h2>
+
+<p>A different tactic is used to tackle the nonlinear dynamics in the
+unscented Kalman filter (UKF). The discrete-time model that we considere
+here is the same nonlinear model as used in the EKF. The difference now
+is that the covariance will no longer be propagated by linearized
+dynamics - and hence computing Jacobians is avoided. Rather, so-called
+<em>sigma points</em> are sampled that represent the underlying Gaussian
+distribution. These points evolve according to the nonlinear dynamics
+and produce a predicted mean and covariance, and are also used in the
+analysis. We provide a brief overview below, see <a href="#1">[1]</a> for
+more details.</p>
+
+<h3 id="sigma-points">Sigma points</h3>
+
+<p>Our state variable $z$ is considered an $N_z$-dimensional random
+variable, for which we can define a mean $\bar z$ and covariance $P$.
+Then we define $N$ <em>sigma points</em> $s_1, \ldots, s_N$
+$\in\mathbb{R}^{N_z}$, which can be any vector, along with specific
+weights.</p>
+
+<p>The first-order weights $W_1^m, \ldots, W_N^m$ must satisfy</p>
+
+<ul>
+  <li>
+    <p>$\sum_{j=1}^N W_j^m = 1$;</p>
+  </li>
+  <li>
+    <p>$\sum_{j=1}^N W_j^m s_j = \bar z$.</p>
+  </li>
+</ul>
+
+<p>The second-order weights $W_1^c, \ldots, W_N^c$ must satisfy</p>
+
+<ul>
+  <li>
+    <p>$\sum_{j=1}^N W_j^c = 1$;</p>
+  </li>
+  <li>
+    <p>an element-wise quadratic constraint, for all pairs
+$(i,l)\in {1, \ldots N_z}$:
+$\sum_{j=1}^N W_j^c (s_j)_i(s_j)_l = \mathbb{E}[z_i z_j]$.</p>
+  </li>
+</ul>
+
+<p>The idea is the following. If we have a random variable $z$ with mean
+$\bar z$ and covariance $P$, then what are the mean and covariance of
+the random variable $y=h(z)$. Specifically, if $h$ is nonlinear, we want
+efficient and unbiased methods to compute these statistics of $y$. The
+sigma points form a set of appropriately chosen weighted points that
+parametrize the means and covariances of the distributions up to third
+order for any nonlinear transformation.</p>
+
+<p>There are several popular choices for sigma points, which are not shown
+here. These generally require knowing the mean $\bar z$ and the
+covariance $P$ at the current point in time.</p>
+
+<h3 id="forecast-and-analysis-2">Forecast and analysis</h3>
+
+<p>Having chosen the sigma points $s^n_j$, $j=1,\ldots, N,$ based on the
+mean $\bar z^n$ and covariance $P^n$, these points can be propagated in
+time to compute the forecast pair $(\bar z^f, P^f)$.</p>
+
+<ol>
+  <li>
+    <p>The sigma points are propagated,</p>
+
+\[s_j^f = f(s_j^n), \quad j=1,\ldots,N,\]
+
+    <p>after which the forecast pair is computed via</p>
+
+\[\begin{aligned}
+        \text{State:} \quad &amp;\bar z^f = \sum_j W_j^m s_j^f, \\
+        \text{Covariance:} \quad &amp;  P^f = \sum_j W_j^c(s_j^f - \bar z^f)(s_j^f - \bar z^f)^T + Q.        
+        \end{aligned}\]
+  </li>
+</ol>
+
+<p>Thus, we see that the sigma points provide an empirical estimate of the mean and the covariance via weighted sums.</p>
+
+<ol>
+  <li>
+    <p>The sigma points also play a role in the observation, so we compute</p>
+
+\[y_j = h(s_j), \quad j=1,\ldots, N,\]
+
+    <p>and subsequently compute the corresponding mean and covariance,</p>
+
+\[\begin{aligned}
+        \bar y &amp;= \sum_j W_j^m y_j, \\
+        S &amp;= \sum_j W_j^c(y_j-\bar y)(y_j-\bar y)^T + R.
+\end{aligned}\]
+
+    <p>The cross-covariance matrix $C_{zs}$ between the
+prediction $z$ and the observation $y$ is also required,</p>
+
+\[C_{zy} = \sum_{j}W_j^c(s_j^f - \bar z^f)(y_j - \bar y)^T,\]
+
+    <p>This leads to the Kalman gain and the update of the state and covariance</p>
+
+\[\begin{aligned}
+        \text{Kalman gain:} \quad &amp; K = C_{zy}S^{-1}, \\
+        \text{Updated state:} \quad &amp; \bar z^a = \bar z^f + K(y_\mathrm{obs} - \bar y)\\
+        \text{Updated covariance:} \quad &amp; P^a = P^f - KSK^T.\\
+\end{aligned}\]
+  </li>
+</ol>
+
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a> 
+Julier, S. J., &amp; Uhlmann, J. K. (1997, July). New extension of the Kalman filter to nonlinear systems. In Signal processing, sensor fusion, and target recognition VI (Vol. 3068, pp. 182-193). Spie.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[The Kalman filter: standard, extended, unscented]]></summary></entry><entry><title type="html">Bayes’ theorem and Bayesian inference</title><link href="http://localhost:4000/academic-website/2025/06/17/bayesian-inference.html" rel="alternate" type="text/html" title="Bayes’ theorem and Bayesian inference" /><published>2025-06-17T00:00:00+02:00</published><updated>2025-06-17T00:00:00+02:00</updated><id>http://localhost:4000/academic-website/2025/06/17/bayesian-inference</id><content type="html" xml:base="http://localhost:4000/academic-website/2025/06/17/bayesian-inference.html"><![CDATA[<h1 id="bayes-theorem-and-bayesian-inference">Bayes’ theorem and Bayesian inference</h1>
+
+<p>Bayes’ theorem is a powerful mathematical tool that helps us say something meaningful about a process $Z$ when we have (possibly partial) observations of this process. We denote the observation process by $Y$. We assume that the $Z$ and $Y$ are subject to independent sources of uncertainty. We want to optimally use the observations to gain, or <em>infer</em>, knowledge about the process $z$, while simultaneously accounting for the uncertainties. This is where Bayes’ theorem comes in.</p>
+
+<p>We will describe how Bayes’ theorem is used to determine the distribution of the true process based on the observation, and provide a simple example for linear dynamics and Gaussian noise. This will show us, in a simple way, how to compute the <em>posterior distribution</em> - we’ll get to that!</p>
+
+<p>Bayesian inference uses probability to quantify uncertainties, requiring us to view particular values $z$ and $y$ as realizations of random variables. Hence, we also have to think in terms of <em>distributions</em>. The random variables $Z$ and $Y$ respectively have probability distribution functions (PDFs) $\pi_Z$ and $\pi_Y$. We’ll see how these distributions are related to each other and to the observation noise.</p>
+
+<h2 id="general-inference-model">General inference model</h2>
+
+<p>The observations $y$ of a process $z$ are given through a <em>forward map</em> $h$, which in total defines a <em>forward model</em>. A general forward model can be written as</p>
+
+\[y = h(z) + \Xi,\]
+
+<p>where $y \in \mathbb{R}^{N_y}$ is the observed variable, $z \in \mathbb{R}^{N_z}$ is the true state and $\Xi$ is observation noise. Here, $h$ is a continuous forward map, not necessarily linear.</p>
+
+<p>The observation noise $\Xi$ also has a PDF denoted by $\pi_\Xi$. This PDF, along with that of $Z$, will help us find an expression for the PDF of $Y$. Namely, the PDF of $Y$, conditional to $Z = z$, is given by</p>
+
+\[\pi_Y(y|z) = \pi_\Xi(y - h(z)).\]
+
+<p>Loosely speaking, this can be thought of as the probability of observing the value $y$, provided that $z$ is the true state. Alternatively, you can think of this as the probability of the observation noise $\Xi$ equaling $y - h(z)$.</p>
+
+<p>The joint distribution $\pi_{ZY}$ of $(Z, Y)$ is given by</p>
+
+\[\pi_{ZY}(z, y) = \pi_Y(y|z)\pi_Z(z).\]
+
+<p>The distribution of $Y$ is then found by marginalizing:</p>
+
+\[\pi_Y(y) = \int_{\mathbb{R}^{N_x}} \pi_Y(y|z)\pi_Z(z)\, \mathrm{d}z = \int_{\mathbb{R}^{N_x}} \pi_\Xi(y - h(z))\pi_Z(z)\, \mathrm{d}z.\]
+
+<h2 id="bayes-theorem">Bayes’ theorem</h2>
+
+<p>Given a particular observation $y_\mathrm{obs}$, 
+the conditional PDF $\pi_Z(z|y_\mathrm{obs})$ tells us the likelihood of a true state $z$ given the observation. We can compute this value via Bayes’ formula:</p>
+
+\[\pi_Z(z|y_\mathrm{obs}) = \frac{\pi_Y(y_\mathrm{obs}|z)\pi_Z(z)}{\pi_Y(y_\mathrm{obs})}.\]
+
+<p>The components of this formula are important in many data assimilation methods. We have:</p>
+
+<ul>
+  <li>$\pi_Z(z)$: the <em>prior PDF</em>, quantifying uncertainty about $Z$ before observing $y_\mathrm{obs}$;</li>
+  <li>$\pi_Z(z \vert y_\mathrm{obs})$: the <em>posterior PDF</em>, quantifying uncertainty after observing $y_\mathrm{obs}$;</li>
+  <li>$\pi_Y(y \vert z) $: the <em>likelihood function</em> of observing $y$ given a particular value $z$;</li>
+  <li>$\pi_Y(y_\mathrm{obs})$: the <em>evidence</em>, which is simply a normalization factor and can often be ignored.</li>
+</ul>
+
+<p>Specifically, the last point means that</p>
+
+\[\pi_Z(z|y_\mathrm{obs}) \propto \pi_\Xi(y_\mathrm{obs} - h(x))\pi_X(x).\]
+
+<p>The terms <em>forecast</em> and <em>analysis</em> are also commonly used in data assimilation. These terms refer to random variables: the forecast variable gives rise to the prior, and the assimilation step (using Bayes’ formula) then leads to the analysis with its marginal distribution as the posterior.</p>
+
+<h2 id="inference-in-linear-models-with-gaussian-noise">Inference in linear models with Gaussian noise</h2>
+
+<p>We can get a feeling for Bayes’ theorem via a simple example. We are interested in finding $\pi_Y$ in the case where $z$ and $\Xi$ are multivariate normal random variables. Here, $z$ will have mean $\bar{z}$ and covariance matrix $P$, and $\Xi$ will have mean zero and covariance matrix $R$. The forward operator is assumed to be linear and can thus be written as $h(z) = Hz$, where $H$ is a matrix of appropriate dimension.</p>
+
+<h3 id="the-evidence">The evidence</h3>
+<p>While we will not use the evidence in our calculations any time soon, it is a good exercise to compute it.</p>
+
+<p>Recall that the PDF of a multivariate normal distribution with mean $\bar{z}$ and covariance $P$ is of the form</p>
+
+\[\pi_Z(z) \propto \exp\left(-\frac{1}{2}(z - \bar z)^T P^{-1} (z - \bar z)\right).\]
+
+<p>We write $\propto$, since we can normalize the distribution after the calculation and the normalizing constant is not important for our current purposes. A similar expression is used for $\pi_\Xi(y - Hz)$, where we use that $\pi_\Xi$ has mean zero:</p>
+
+\[\pi_\Xi(y - Hz) \propto \exp\left(-\frac{1}{2}(y - Hz)^T R^{-1} (y - Hz)\right).\]
+
+<p>Finally, for $\pi_Y$ we compute the following:</p>
+
+\[\pi_Y(y) \propto \int_{\mathbb{R}^{N_z}} \!\exp\left(-\frac{1}{2}(y - Hz)^T R^{-1} (y - Hz)\right) \times \exp\left(-\frac{1}{2}(z - \bar z)^T P^{-1} (z - \bar z)\right)\,\text{d} z.\]
+
+<p>We can combine the terms in the exponents in the integrand, and denote this by $I$. We have</p>
+
+\[I = -\frac{1}{2}\left((y - Hz)^T R^{-1} (y - Hz) + (z - \bar z)^T P^{-1} (z - \bar z)\right)\]
+
+<p>For symmetric matrices $C$, the identity</p>
+
+\[z^T C z - 2d^T z = (z - C^{-1}d)^T C (z - C^{-1}d) - d^T C^{-1} d\]
+
+<p>can be used to simplify $I$. We write</p>
+
+\[\begin{split}
+    I &amp;= -\frac{1}{2}\left\{ (z - C^{-1} d)^T c (z - C^{-1} d) - d^T C^{-1} d + y^T R^{-1} y + \bar z^T P^{-1} \bar z \right\}, \\
+    C &amp;= P^{-1} + H^T R^{-1} H, \\
+    d &amp;= H^T R^{-1} y + P^{-1}  z.
+\end{split}\]
+
+<h3 id="the-posterior">The posterior</h3>
+<p>The posterior distribution is of critical importance in data assimilation methods. In this simple case of a linear forward model and Gaussian noise, we can actually compute it explicitly! We assume that we have observed $y_\mathrm{obs}$, and we will use Bayes’ formula to compute the posterior. This illustrates how we can use knowledge of the prior to compute the posterior.</p>
+
+<p>We start by using Bayes’ formula:</p>
+
+\[\begin{split}
+        \pi_Z(z|y) &amp; \propto \pi_\Xi(y - Hz)\pi_Z(z) = \exp\left(-\frac{1}{2}\left[ (y - Hz)^T R^{-1} (y - Hz) + (z - \bar z)^T P^{-1} (z - \bar z) \right]\right) \\
+        &amp; \propto \exp\left(-\frac{1}{2}(z - C^{-1} d)^T C (z - C^{-1} d)\right).
+    \end{split}\]
+
+<p>We recognize a multivariate normal distribution in the last line. This means that $\pi_Z(z|y_\mathrm{obs}) = \mathcal{N}(z; \mu, S)$, with 
+covariance</p>
+
+\[S = C^{-1} = (P^{-1} + H^T R^{-1} H)^{-1}\]
+
+<p>and mean</p>
+
+\[\mu = C^{-1} d = \bar z - S H^T R^{-1} (H \bar z - y_\mathrm{obs}).\]
+
+<p>We see that the mean of the posterior is influenced by the mean of the prior ($\bar z$) as well as the observation $y_\mathrm{obs}$ and the forward map $H$. The covariance is related both to the covariance of the prior as well as the observation. In fact, the update from the prior to the posterior takes into account the uncertainties in the prior and in the observation. If there is no uncertainty in the observation, then the mean of the posterior will be exactly the observation -  after all, we would then be absolutely certain that the observation is the truth. The update from prior to posterior in the linear Gaussian case is a key element in the well-known Kalman filter.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Bayes’ theorem and Bayesian inference]]></summary></entry><entry><title type="html">A brief derivation of the Kalman filter</title><link href="http://localhost:4000/academic-website/2025/06/17/kalman-filter.html" rel="alternate" type="text/html" title="A brief derivation of the Kalman filter" /><published>2025-06-17T00:00:00+02:00</published><updated>2025-06-17T00:00:00+02:00</updated><id>http://localhost:4000/academic-website/2025/06/17/kalman-filter</id><content type="html" xml:base="http://localhost:4000/academic-website/2025/06/17/kalman-filter.html"><![CDATA[<h1 id="a-brief-derivation-of-the-kalman-filter">A brief derivation of the Kalman filter</h1>
+
+<p>The Kalman filter is a well-known data assimilation method. It is an algorithm that includes the observation optimally to improve the estimate of the true process. We assume linear dynamics of the true model, a linear observation model, and Gaussian process noise and observation noise.
+While these simplifying assumptions sound restrictive, it permits the derivation of a closed form solution. This serves as a first step to more intricate data assimilation methods.</p>
+
+<p>We start by describing the linear dynamics and illustrate some probabilistic properties of these dynamics. We then move on the Kalman filter, where we make use of <em>Bayesian inference in linear models with Gaussian noise</em>.</p>
+
+<h3 id="discrete-time-linear-dynamics">Discrete-time linear dynamics</h3>
+<p><em>Based on Example 4.6 from “Probabilistic forecasting and Bayesian data assimilation”.</em></p>
+
+<p>Consider a linear evolution equation in discrete time, \begin{equation}
+    z^{n+1} = Fz^n + B + \Xi^n,
+\end{equation}
+where the superscripts indicate the time level. 
+Here, $z^n\in\mathbb{R}^{N_z}$, $F\in\mathbb{R}^{N_z\times N_z}$ is a matrix describing how the state $z^n$ transitions to $z^n+1$, $B\in\mathbb{R}^{N_z}$ denotes additional input in the state evolution, and $\Xi^n$ is process noise.</p>
+
+<p>This evolution equation is accompanied by a linear observation model (or forward model) \begin{equation}
+    y^n = H z^n + \Sigma^n,
+\end{equation}
+where $ H\in \mathbb{R}^{N_y \times N_z}$ is the forward map, and $\Sigma^n$ is measurement noise. The values of $y^n$ are observations of the true dynamics $z^n$. Depending on the entries of $H$, these can be partial or full observations of $z^n$.</p>
+
+<p>For the derivation of the Kalman filter, we assume linear dynamics and a linear forward map $H$.
+With the dynamical model and the observation model in place, the filtering problem is the following: given observations $y^0, \ldots, y^n$, estimate $z^n$.</p>
+
+<h3 id="noise-processes">Noise processes</h3>
+<p>The noise processes ${\Xi^n }, ~{ \Sigma^n }$ are assumed to be Gaussian processes with mean zero and covariance matrices $Q$ and $R$, respectively. In other words,</p>
+
+\[\begin{split}
+    &amp;\mathbb{E}[\Xi^n] = 0 = \mathbb{E}[\Sigma^n], \\
+    &amp; \mathbb{E}\left[\Xi^n (\Xi^k)^T\right] = \delta_{nk} Q, \\
+    &amp; \mathbb{E}\left[\Sigma^n (\Sigma^k)^T\right] = \delta_{nk} R.
+    \end{split}\]
+
+<p>The noise processes are also uncorrelated to the states $z^n$, $y^n$, a property which will simplify our derivations below.</p>
+
+<h3 id="evolution-of-mean-and-covariance">Evolution of mean and covariance</h3>
+<p>The initial system state is assumed to be Gaussian, fully described by the mean and covariance. We take
+\begin{align}
+    \begin{split}
+        &amp;\mathbb{E}[z^0] = \bar{z}^0, <br />
+        &amp;\mathbb{E}[(z^0 - \bar{z}^0)(z^0 - \bar{z}^0)^T] = P^0.
+    \end{split}
+\end{align}
+We now show how the mean and the covariance evolve under the linear dynamics. We will repeatedly use the linearity of the expectation $\mathbb{E}[\cdot]$ and the independence of the noise process.</p>
+
+<p>For the mean $\bar z^{n+1}$, we find \begin{equation}
+    \bar z^{n+1} = \mathbb{E}[z^{n+1}] = \mathbb{E}[F z^n + B^n + \Xi^n] = F \bar{z}^n + B^n.
+\end{equation}
+This also shows us that $z^{n+1} - \bar z^{n+1} = F(z^n - \bar z^n) + \Xi^n$, which comes in handy for the covariance evolution.
+The evolution of the covariance follows from</p>
+
+\[\begin{split}
+    P^{n+1}&amp;=\mathbb{E}\left[(z^{n+1} - \bar{z}^{n+1})(z^{n+1} - \bar{z}^{n+1})^T\right] \\&amp;= \mathbb{E}\left[\left(F(z^n - \bar z^n) + \Xi^n\right)\left(F(z^n - \bar z^n) + \Xi^n\right)^T\right] \\
+    &amp; = \mathbb{E}\left[F(z^n - \bar z^n)(z^n - \bar z^n)^T F^T\right] + \mathbb{E}\left[\Xi^n(\Xi^n)^T\right] \\
+    &amp; = F P^n F^T + Q.
+\end{split}\]
+
+<p>Similarly, we can derive the evolution of the mean and covariance of $y$. We have \begin{equation}
+        \bar y^{n+1} = \mathbb{E}[y^{n+1}] = \mathbb{E}[H z^n + \Sigma^n] = H \bar{z}^n 
+\end{equation}
+for the mean and \begin{equation}
+        \mathrm{cov}(y^n, y^n) = \mathbb{E}\left[\left(H(z^n - \bar{z}^n) + \Sigma^n\right)\left(H(z^n - \bar{z}^n) + \Sigma^n\right)^T\right] = H P^n H^T + R
+\end{equation}
+for the covariance.</p>
+
+<h2 id="the-kalman-filter">The Kalman filter</h2>
+<p><em>Based on Section 6.1 of “Probabilistic forecasting and Bayesian data assimilation”.</em></p>
+
+<h3 id="derivation">Derivation</h3>
+<p>The mean and covariance are propagated over one or more time steps via the linear dynamics. The propagated mean and variance define a multivariate normal distribution, which we will call the forecast pair $(\bar z^f, P^f)$. Note that the superscript will be used to distinguish between the forecast and analysis pairs; it does not indicate a time instance now.</p>
+
+<p>We assume now that we have arrived at the point in time when a new observation becomes available. The Kalman filter provides an algorithm to transform incorporate this observation into the forecast pair and, in doing so, compute the analysis pair.</p>
+
+<p>The observation is denoted by $y_\mathrm{obs}$ and recall that $y_\mathrm{obs}\sim\mathcal{N}(H\bar z^f, R)$. Substituting this into the posterior update for linear dynamics and normally distribution noise (see <a href="/academic-website/2025/06/17/bayesian-inference.html">Bayesian inference</a>), 
+we obtain the analysis pair $(\bar z^a, P^a)$,</p>
+
+\[\begin{split}
+    \bar z^a &amp;= \bar z^f - P^a H^TR^{-1}(H\bar z^f-y_\mathrm{obs}), \\
+    P^a &amp;= ((P^f)^{-1} + H^T R^{-1} H)^{-1}.
+\end{split}\]
+
+<p>The equation for the analysis covariance still needs some work. Using the <a href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity">Woodbury matrix identity</a>,
+this can be rewritten to \begin{equation}
+    \begin{split}
+        P^a &amp;= P^f - P^fH^T(R+HP^fH^T)^{-1}HP^f <br />
+        &amp; = P^f - KHP^f.
+    \end{split}
+\end{equation}
+The last step introduced a matrix $K$. This is the <em>Kalman gain matrix</em> defined as \begin{equation}
+    K = P^fH^T(R+HP^fH^T)^{-1},
+\end{equation}
+This matrix tells us how strongly the forecast pair should be corrected based on the observation. The update for the mean can also be written using $K$, which highlights the correction strength (innovation): \begin{equation}
+    \bar z^a = \bar z^f - K\underbrace{(H\bar z^f - y_\mathrm{obs})}_{-\text{innovation}}.
+\end{equation}</p>
+
+<h3 id="posterior-update-algorithm">Posterior update algorithm</h3>
+<p>Summarizing, the Kalman filter transforms the prior to the posterior in to simple steps when a new observation becomes available. Using the notation introduced above, these steps are:</p>
+<ol>
+  <li>Compute the Kalman gain matrix,</li>
+</ol>
+
+\[K = P^fH^T(R+HP^fH^T)^{-1};\]
+
+<ol>
+  <li>Update the mean and covariance</li>
+</ol>
+
+\[\begin{split} z^a &amp;= \bar z^f - K(H\bar z^f - y_\mathrm{obs}), \\
+    P^a &amp;= P^f - KHP^f. \end{split}\]]]></content><author><name></name></author><summary type="html"><![CDATA[A brief derivation of the Kalman filter]]></summary></entry></feed>

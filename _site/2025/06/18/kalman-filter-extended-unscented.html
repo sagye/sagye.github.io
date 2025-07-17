@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Kalman filter: standard, extended, unscented | Sagy Ephrati</title>
+  <link rel="stylesheet" href="/academic-website/assets/style.css">
+</head>
+
+<!-- Load MathJax -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body>
+  <div>
+    <header padding: 1em 0;">
+	<div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 1em;">
+      <h1>Sagy Ephrati</h1>
+      <nav>
+        <a href="/academic-website/">Home</a>
+        <a href="/academic-website/notes.html">Notes</a>
+        <a href="/academic-website/publications.html">Publications</a>
+        <a href="/academic-website/cv.html">CV</a>
+        <a href="/academic-website/contact.html">Contact</a>
+        <button id="theme-toggle" style="
+        position: fixed;
+        top: 1em;
+        right: 1em;
+	padding: 0.5em 1.2em;
+	border: none;
+	border-radius: 6px;
+	background-color: #003366;
+	color: #ffffff;
+	font-size: 0.9rem;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	z-index: 1000;
+	">
+	🌓
+        </button>
+      </nav>
+</div>
+
+
+    </header>
+
+    <main style="max-width: 800px; margin: 2em auto; padding: 0 1em;">
+      <h1 id="the-kalman-filter-standard-extended-unscented">The Kalman filter: standard, extended, unscented</h1>
+
+<p>Now we’ll have a look at some extensions to the Kalman filter.
+Specifically, we will introduce the extended Kalman filter (EKF) and the
+unscented Kalman filter (UKF). Let’s first recap the standard Kalman
+filter.</p>
+
+<h2 id="the-kalman-filter">The Kalman filter</h2>
+
+<h3 id="model-formulation">Model formulation</h3>
+
+<p>Recall the discrete-time linear dynamics subject to Gaussian noise,
+\(z^{n+1} = Fz^n + B + \Xi^n.\) Here $F$ and $B$ describe how the state
+$z$ transitions from one time instance to the next, and $\Xi^n$ is
+(multivariate) Gaussian process noise with mean zero and covariance
+matrix $Q$.</p>
+
+<p>The forward (observation) model is also assumed to be linear and subject
+to noise: \(y^n = Hz^n + \Sigma^n,\) where $H$ is an appropriately sized
+matrix and $\Sigma$ and is a (multivariate) Gaussian process with mean
+zero and covariance matrix $R$.</p>
+
+<h3 id="forecast-and-analysis">Forecast and analysis</h3>
+
+<p>Simulating the dynamics of this system and incorporating measurements
+consists of two steps: i) predict (or <em>forecast</em>), and ii) update (or
+<em>analysis</em>).</p>
+
+<ol>
+  <li>
+    <p>The prediction step takes place whenever no new observations are
+available. For the linear case with Gaussian noise, we the mean
+state and the covariance evolved as follows:</p>
+
+\[\begin{aligned}
+        \text{Mean state:} \quad &amp; \bar z^{n+1} = F\bar{z}^n + B, \\
+        \text{Covariance:} \quad &amp; P^{n+1} = F P^n F^T + Q.    
+\end{aligned}\]
+  </li>
+  <li>
+    <p>The update step takes place when new observations become available.
+Let’s say this happens after computing $\bar z^n$ and $P^n$. Then,
+$(\bar z^n, P^n)$ will be our forecast pair, and we’ll denote these
+by $(\bar z^f, P^f)$ for now. An observation $y_\mathrm{obs}$ of the
+true signal then allows us to transform the forecast pair into an
+analysis pair $(\bar z^a, P^a)$ by applying the Kalman filter:</p>
+
+\[\begin{aligned}
+        \text{Innovation:} \quad &amp; x = y_\mathrm{obs} - H \bar z^f, \\
+        \text{Innovation covariance:} \quad &amp; S = H P^f H^T + R, \\
+\text{Kalman gain:} \quad &amp; K = P^f H^T S^{-1}, \\
+\text{Updated state:} \quad &amp; \bar z^a = \bar z^f + Kx, \\
+\text{Updated covariance:} \quad &amp; P^a = (I - K H) P^f.
+\end{aligned}\]
+  </li>
+</ol>
+
+<p>It’s good to keep in mind that $P^f$ and $P^a$ (in the update step) are
+defined at the same point in time. The analysis pair can then be used to
+predict the state and covariance at the next time instance.</p>
+
+<p>That’s all there is for the Kalman filter: it’s a clean, <em>optimal</em>
+algorithm for linear models subject to additive Gaussian noise. But what
+if the evolution of the true state is nonlinear? The extended Kalman
+filter (EKF) can then be used instead.</p>
+
+<h2 id="the-extended-kalman-filter">The extended Kalman filter</h2>
+
+<p>Many real-world problems are described by nonlinear equations. In such
+cases, the assumptions underlying the standard Kalman filter no longer
+apply. Different methods should then be used to accurately incorporate
+observations into predictions. The extended Kalman filter (EKF) is a
+popular method that does just that.</p>
+
+<h3 id="model-formulation-1">Model formulation</h3>
+
+<p>Our discrete-time dynamics is now no longer assumed to be linear.
+Instead, we write</p>
+
+\[\begin{split}
+        z^{n+1} = f(z^n) + \Xi^n, \\
+        y^n = h(z^n) + \Sigma^n,
+    \end{split}\]
+
+<p>where $f$ and $h$ are differentiable functions. The
+properties of $\Xi$ and $\Sigma$ are the same as before.</p>
+
+<h3 id="forecast-and-analysis-1">Forecast and analysis</h3>
+
+<p>Predicting the state at time level $n+1$ is straightforward: simply
+compute $f(z^n)$. Predicting the covariance $P^{n+1}$ is more difficult,
+and we have to linearize the dynamics $f$ instead to approximate the
+covariance at the new time level. This is achieved via linearization,
+using the Jacobian as an approximation of the true dynamics.</p>
+
+<p>The forecast and analysis steps in the EKF are as follows.</p>
+
+<ol>
+  <li>
+    <p>The prediction relies on the nonlinear dynamics for the state
+estimate and linearized dynamics for the covariance. Note that the
+linearized state transition is evaluated at $z^n$.</p>
+
+\[\begin{aligned}
+        \text{State:} \quad &amp; z^f = f(z^n), \\
+        \text{Linearized state transition:} \quad &amp; F = \frac{\partial f}{\partial z}\Big|_{z^n}\\
+        \text{Covariance:} \quad &amp; P^f = F P^n F^T + Q.
+\end{aligned}\]
+  </li>
+  <li>
+    <p>The update is similar to that of the Kalman filter, but again relies
+on linearized dynamics on certain places. The linearized observation
+is evaluated at $z^f$</p>
+
+\[\begin{aligned}
+        \text{Innovation:} \quad &amp; x = y_\mathrm{obs} - h(z^f), \\
+        \text{Linearized observation:}\quad  &amp; H = \frac{\partial h}{\partial x}\Big|_{z_f}\\
+        \text{Innovation covariance:} \quad &amp; S = H P^f H^T + R, \\
+    \text{Kalman gain:} \quad &amp; K = P^f H^T S^{-1}, \\
+    \text{Updated state:} \quad &amp;  z^a =  z^f + Kx, \\
+    \text{Updated covariance:} \quad &amp; P^a = (I - K H) P^f.
+\end{aligned}\]
+  </li>
+</ol>
+
+<p>The Kalman gain is now no longer optimal, owing to the approximate
+evolution of the covariance. As a result of the linearization, errors in
+the state estimate might grow if above a certain threshold - possibly
+leading to divergent predictions.</p>
+
+<h2 id="the-unscented-kalman-filter">The unscented Kalman filter</h2>
+
+<p>A different tactic is used to tackle the nonlinear dynamics in the
+unscented Kalman filter (UKF). The discrete-time model that we considere
+here is the same nonlinear model as used in the EKF. The difference now
+is that the covariance will no longer be propagated by linearized
+dynamics - and hence computing Jacobians is avoided. Rather, so-called
+<em>sigma points</em> are sampled that represent the underlying Gaussian
+distribution. These points evolve according to the nonlinear dynamics
+and produce a predicted mean and covariance, and are also used in the
+analysis. We provide a brief overview below, see <a href="#1">[1]</a> for
+more details.</p>
+
+<h3 id="sigma-points">Sigma points</h3>
+
+<p>Our state variable $z$ is considered an $N_z$-dimensional random
+variable, for which we can define a mean $\bar z$ and covariance $P$.
+Then we define $N$ <em>sigma points</em> $s_1, \ldots, s_N$
+$\in\mathbb{R}^{N_z}$, which can be any vector, along with specific
+weights.</p>
+
+<p>The first-order weights $W_1^m, \ldots, W_N^m$ must satisfy</p>
+
+<ul>
+  <li>
+    <p>$\sum_{j=1}^N W_j^m = 1$;</p>
+  </li>
+  <li>
+    <p>$\sum_{j=1}^N W_j^m s_j = \bar z$.</p>
+  </li>
+</ul>
+
+<p>The second-order weights $W_1^c, \ldots, W_N^c$ must satisfy</p>
+
+<ul>
+  <li>
+    <p>$\sum_{j=1}^N W_j^c = 1$;</p>
+  </li>
+  <li>
+    <p>an element-wise quadratic constraint, for all pairs
+$(i,l)\in {1, \ldots N_z}$:
+$\sum_{j=1}^N W_j^c (s_j)_i(s_j)_l = \mathbb{E}[z_i z_j]$.</p>
+  </li>
+</ul>
+
+<p>The idea is the following. If we have a random variable $z$ with mean
+$\bar z$ and covariance $P$, then what are the mean and covariance of
+the random variable $y=h(z)$. Specifically, if $h$ is nonlinear, we want
+efficient and unbiased methods to compute these statistics of $y$. The
+sigma points form a set of appropriately chosen weighted points that
+parametrize the means and covariances of the distributions up to third
+order for any nonlinear transformation.</p>
+
+<p>There are several popular choices for sigma points, which are not shown
+here. These generally require knowing the mean $\bar z$ and the
+covariance $P$ at the current point in time.</p>
+
+<h3 id="forecast-and-analysis-2">Forecast and analysis</h3>
+
+<p>Having chosen the sigma points $s^n_j$, $j=1,\ldots, N,$ based on the
+mean $\bar z^n$ and covariance $P^n$, these points can be propagated in
+time to compute the forecast pair $(\bar z^f, P^f)$.</p>
+
+<ol>
+  <li>
+    <p>The sigma points are propagated,</p>
+
+\[s_j^f = f(s_j^n), \quad j=1,\ldots,N,\]
+
+    <p>after which the forecast pair is computed via</p>
+
+\[\begin{aligned}
+        \text{State:} \quad &amp;\bar z^f = \sum_j W_j^m s_j^f, \\
+        \text{Covariance:} \quad &amp;  P^f = \sum_j W_j^c(s_j^f - \bar z^f)(s_j^f - \bar z^f)^T + Q.        
+        \end{aligned}\]
+  </li>
+</ol>
+
+<p>Thus, we see that the sigma points provide an empirical estimate of the mean and the covariance via weighted sums.</p>
+
+<ol>
+  <li>
+    <p>The sigma points also play a role in the observation, so we compute</p>
+
+\[y_j = h(s_j), \quad j=1,\ldots, N,\]
+
+    <p>and subsequently compute the corresponding mean and covariance,</p>
+
+\[\begin{aligned}
+        \bar y &amp;= \sum_j W_j^m y_j, \\
+        S &amp;= \sum_j W_j^c(y_j-\bar y)(y_j-\bar y)^T + R.
+\end{aligned}\]
+
+    <p>The cross-covariance matrix $C_{zs}$ between the
+prediction $z$ and the observation $y$ is also required,</p>
+
+\[C_{zy} = \sum_{j}W_j^c(s_j^f - \bar z^f)(y_j - \bar y)^T,\]
+
+    <p>This leads to the Kalman gain and the update of the state and covariance</p>
+
+\[\begin{aligned}
+        \text{Kalman gain:} \quad &amp; K = C_{zy}S^{-1}, \\
+        \text{Updated state:} \quad &amp; \bar z^a = \bar z^f + K(y_\mathrm{obs} - \bar y)\\
+        \text{Updated covariance:} \quad &amp; P^a = P^f - KSK^T.\\
+\end{aligned}\]
+  </li>
+</ol>
+
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a> 
+Julier, S. J., &amp; Uhlmann, J. K. (1997, July). New extension of the Kalman filter to nonlinear systems. In Signal processing, sensor fusion, and target recognition VI (Vol. 3068, pp. 182-193). Spie.</p>
+
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <p><strong>Sagy Ephrati</strong><br>
+          sagy@chalmers.se</p>
+        </div>
+        <div class="footer-right">
+          <p>
+            <a href="https://scholar.google.com/citations?user=JSh4h2YAAAAJ&hl=nl" target="_blank">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/sagy-ephrati-20a6b1108/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/sagye?tab=repositories" target="_blank">GitHub</a>
+          </p>
+        </div>
+      </div>
+      <p>&copy; 2025 Sagy Ephrati. Powered by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+    </footer>
+
+  </div>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Load previous preference
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme',
+      body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+</script>
+
+</body>
+</html>
