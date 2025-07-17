@@ -23,7 +23,7 @@ email: "sagy@chalmers.se"
 description: "Homepage of Sagy Ephrati"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://sagye.github.io" 
-github_username:  sagye
+github_username: sagye
 
 # Build settings
 theme: null
