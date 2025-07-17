@@ -9,7 +9,7 @@ title: "Normal coordinates on a Riemannian manifold"
 Working on a tangent space is generally straightforward: tangent spaces are linear and this simplifies many things. Working on manifolds can be more complicated: manifolds can be curved, and the standard notions of addition and subtraction may no longer work.
 
 Today, we'll look at normal coordinates. These coordinates allow us to translate perturbation in $\mathbb{R}^m$ to perturbations on our manifold, and provide some sort of addition and subtraction.
-Normal coordinates are constructed via the Riemannian exponential map: we can move around the tangent space and then map this movement to the manifold via the Riemannian exponential. This naturally means that the normal coordinates depend on the exponential, and therefore, on the geodesics (or alternatively: on the the affine connection or the Riemannian metric).
+Normal coordinates are constructed via the Riemannian exponential map: we can move around the tangent space and then map this movement to the manifold via the Riemannian exponential. This naturally means that the normal coordinates depend on the exponential, and therefore, on the geodesics (or alternatively: on the affine connection or the Riemannian metric).
 
 We define the construction of normal coordinates below and show a quick example on the orthonormal group $O(3)$.
 

@@ -21,7 +21,7 @@ My research interests include geometric methods for fluid dynamics and other phy
 
 
 <div>
-  <img src="./assets/placeholder.jpg" alt="Sagy" class="bio-image" />
+  <img src="assets/placeholder.jpg" alt="Sagy" class="bio-image" />
 </div>
 
 </div>

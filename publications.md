@@ -24,28 +24,28 @@ Publications by categories in reversed chronological order
    title="Thermal quasi-geostrophic model on the sphere: derivation and structure-preserving simulation"
    authors="M. Roop and <u>S. Ephrati</u>  (2025)"
    doi="https://arxiv.org/abs/2505.17044"
-   pdf="/academic-website/assets/publications/RoopEphrati2025.pdf"
+   pdf="assets/publications/RoopEphrati2025.pdf"
 %}
 
 {% include publication-entry.html
    title="Critical latitude in global quasi-geostrophic flow on a rotating sphere"
    authors="A.D. Franken, E. Luesink, <u>S. Ephrati</u> and B.J. Geurts (2025)"
    doi="https://arxiv.org/abs/2409.05432"
-   pdf="/academic-website/assets/publications/FrankenLuesinkEphratiGeurts2024.pdf"
+   pdf="assets/publications/FrankenLuesinkEphratiGeurts2024.pdf"
 %}
 
 {% include publication-entry.html
    title="An exponential map free implicit midpoint method for stochastic Lie-Poisson systems"
    authors="<u>S. Ephrati</u> , E. Jansson, A. Lang and E. Luesink  (2024)"
    doi="https://arxiv.org/abs/2408.16701"
-   pdf="/academic-website/assets/publications//pdfs/EphratiJanssonLangLuesink2024.pdf"
+   pdf="assets/publications//pdfs/EphratiJanssonLangLuesink2024.pdf"
 %}
 
 {% include publication-entry.html
    title="Geometric derivation and structure-preserving simulation of quasi-geostrophy on the sphere"
    authors="E. Luesink, A.D. Franken, <u>S. Ephrati</u> and B.J. Geurts  (2024)"
    doi="https://arxiv.org/abs/2402.13707"
-   pdf="/academic-website/assets/publications/LuesinkFrankenEphratiGeurts2024.pdf"
+   pdf="assets/publications/LuesinkFrankenEphratiGeurts2024.pdf"
 %}
 </ul>
 
@@ -62,7 +62,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>  (2025)"
    venue="Accepted for publication in J. Comp. Phys."
    doi="https://arxiv.org/abs/2408.14838"
-   pdf="/academic-website/assets/publications/Ephrati2024.pdf"
+   pdf="assets/publications/Ephrati2024.pdf"
 %}
 
 {% include publication-entry.html
@@ -70,7 +70,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>, E. Jansson and K. Modin (2025)"
    venue="Physica D"
    doi="https://doi.org/10.1016/j.physd.2025.134808"
-   pdf="/academic-website/assets/publications/EphratiJanssonModin2025.pdf"
+   pdf="assets/publications/EphratiJanssonModin2025.pdf"
 %}
 
 {% include publication-entry.html
@@ -78,7 +78,7 @@ Publications by categories in reversed chronological order
    authors="A.D. Franken, E. Luesink, <u>S. Ephrati</u> and B.J. Geurts (2025)"
    venue="J. Comp. Phys."
    doi="https://doi.org/10.1016/j.jcp.2025.114155"
-   pdf="/academic-website/assets/publications/FrankenLuesinkEphratiGeurts2025.pdf"
+   pdf="assets/publications/FrankenLuesinkEphratiGeurts2025.pdf"
 %}
 
 {% include publication-entry.html
@@ -86,7 +86,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u> and E. Jansson (2025)"
    venue="Phys. Rev. E"
    doi="https://doi.org/10.1103/PhysRevE.111.054201"
-   pdf="/academic-website/assets/publications/EphratiJansson2025.pdf"
+   pdf="assets/publications/EphratiJansson2025.pdf"
 %}
 
 {% include publication-entry.html
@@ -94,7 +94,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>, A.D. Franken, E. Luesink, P. Cifani and B.J. Geurts (2025)"
    venue="Phys. Rev. Fluids"
    doi="https://doi.org/10.1103/PhysRevFluids.10.013801"
-   pdf="/academic-website/assets/publications/EphratiFrankenLuesinkCifaniGeurts2025.pdf"
+   pdf="assets/publications/EphratiFrankenLuesinkCifaniGeurts2025.pdf"
 %}
 </ul>
 
@@ -107,7 +107,7 @@ Publications by categories in reversed chronological order
    authors="E. Luesink, <u>S. Ephrati</u>, P. Cifani and B.J. Geurts (2024)"
    venue="Adv. Contin. Discrete Models"
    doi="https://doi.org/10.1186/s13662-023-03796-y"
-   pdf="/academic-website/assets/publications/LuesinkEphratiCifaniGeurts2024.pdf"
+   pdf="assets/publications/LuesinkEphratiCifaniGeurts2024.pdf"
 %}
 </ul>
   
@@ -121,7 +121,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>, P. Cifani and B.J. Geurts (2023)"
    venue="J. Fluid Mech."
    doi="https://doi.org/10.1017/jfm.2023.816"
-   pdf="/academic-website/assets/publications/EphratiCifaniGeurts2023.pdf"
+   pdf="assets/publications/EphratiCifaniGeurts2023.pdf"
 %}
 
 {% include publication-entry.html
@@ -129,7 +129,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>, P. Cifani, M. Viviani and B.J. Geurts (2023)"
    venue="Phys. Fluids"
    doi="https://doi.org/10.1063/5.0156942"
-   pdf="/academic-website/assets/publications/EphratiCifaniVivianiGeurts2023.pdf"
+   pdf="assets/publications/EphratiCifaniVivianiGeurts2023.pdf"
 %}
 
 {% include publication-entry.html
@@ -137,7 +137,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>, P. Cifani, E. Luesink and B. J. Geurts (2023)"
    venue="J. Adv. Model. Earth Syst."
    doi="https://doi.org/10.1029/2022MS003268"
-   pdf="/academic-website/assets/publications/EphratiCifaniLuesinkGeurts2023.pdf"
+   pdf="assets/publications/EphratiCifaniLuesinkGeurts2023.pdf"
 %}
 
 </ul>
@@ -149,7 +149,7 @@ Publications by categories in reversed chronological order
    authors="<u>S. Ephrati</u>, E. Luesink, G. Wimmer, P. Cifani and B.J. Geurts (2022)"
    venue="Multiscale Model. Simul."
    doi="https://doi.org/10.1137/21M1452871"
-   pdf="/academic-website/assets/publications/EphratiLuesinkWimmerCifaniGeurts2022.pdf"
+   pdf="assets/publications/EphratiLuesinkWimmerCifaniGeurts2022.pdf"
 %}
 
 </ul>
@@ -162,7 +162,7 @@ Publications by categories in reversed chronological order
    title="Stochastic data-driven POD-based modeling for high-fidelity coarsening of two-dimensional Rayleigh-Bénard turbulence"
    authors="<u>S. Ephrati</u>, P. Cifani and B.J. Geurts (2023)"
    venue="ERCOFTAC Workshop Direct and Large Eddy Simulation"
-   pdf="/academic-website/assets/publications/EphratiCifaniGeurts2023_proceedings.pdf"
+   pdf="assets/publications/EphratiCifaniGeurts2023_proceedings.pdf"
 %}
 
 {% include publication-entry.html
@@ -180,7 +180,7 @@ Publications by categories in reversed chronological order
 {% include publication-entry.html
    title="Data-driven Stochastic Modeling for Coarsened Computational Geophysical Fluid Dynamics"
    authors="<u>S. Ephrati</u> (2023)" 
-   pdf="/academic-website/assets/publications/ThesisSagy.pdf"
+   pdf="assets/publications/ThesisSagy.pdf"
 %}
 </ul>
 
