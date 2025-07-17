@@ -21,7 +21,7 @@
 title: "Sagy Ephrati"
 email: "sagy@chalmers.se"
 description: "Homepage of Sagy Ephrati"
-baseurl: /sagye.github.io # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://sagye.github.io" 
 github_username:  sagye
 
