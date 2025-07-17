@@ -1,0 +1,19 @@
+---
+layout: default
+title: Posts
+---
+
+<h1>Notes</h1>
+<h2 style="color: #555; font-weight: normal;">Maths!</h2>
+<p style="margin-bottom: 2em; max-width: 700px;">
+  Here you'll find informal notes on maths that I find interesting, use in my research, or try to learn more about.
+</p>
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a> — 
+      <small>{{ post.date | date: "%B %-d, %Y" }}</small>
+    </li>
+  {% endfor %}
+</ul>

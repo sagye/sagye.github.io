@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The ensemble Kalman filter | Sagy Ephrati</title>
+  <link rel="stylesheet" href="/sagye.github.io/assets/style.css">
+</head>
+
+<!-- Load MathJax -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body>
+  <div>
+    <header padding: 1em 0;">
+	<div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 1em;">
+      <h1>Sagy Ephrati</h1>
+      <nav>
+        <a href="/sagye.github.io/">Home</a>
+        <a href="/sagye.github.io/notes.html">Notes</a>
+        <a href="/sagye.github.io/publications.html">Publications</a>
+        <a href="/sagye.github.io/cv.html">CV</a>
+        <a href="/sagye.github.io/contact.html">Contact</a>
+        <button id="theme-toggle" style="
+        position: fixed;
+        top: 1em;
+        right: 1em;
+	padding: 0.5em 1.2em;
+	border: none;
+	border-radius: 6px;
+	background-color: #003366;
+	color: #ffffff;
+	font-size: 0.9rem;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	z-index: 1000;
+	">
+	🌓
+        </button>
+      </nav>
+</div>
+
+
+    </header>
+
+    <main style="max-width: 800px; margin: 2em auto; padding: 0 1em;">
+      <h1 id="the-ensemble-kalman-filter">The ensemble Kalman filter</h1>
+
+<p>The standard Kalman filter yields an algorithm that transforms a
+Gaussian forecast pair $(\bar z^f, P^f)$ to an analysis pair
+$(\bar z^a, P^a)$, under the assumption of a linear model subject to
+Gaussian noise. A general approach to transform empirical forecast PDFs
+to analysis PDFs is particle filtering. The downside to this is that
+computational costs can grow quickly when many particles are used to
+approximate the empirical PDFs. The ensemble Kalman filter (EnKF) sits
+somewhere in the middle, and has become a popular tool for state
+estimation in high-dimensional physics problems. Its suitability for
+high-dimensional nonlinear problems stems from the fact that the
+covariance matrix is not propagated, but is instead computed empirically
+from an ensemble.</p>
+
+<p>For full details, see, e.g.,
+<a href="#1">[1]</a>, <a href="#2">[2]</a>.</p>
+
+<p>We outline the EnKF below.</p>
+
+<h3 id="model-formulation">Model formulation</h3>
+
+<p>We consider a discrete-time system with nonlinear dynamics,</p>
+
+\[\begin{split}
+        z^{n+1} &amp;= f(z^n) + \Xi^n, \\
+        y^n &amp;= h(z^n) + \Sigma^n. 
+    \end{split}\]
+
+<p>Here, $z^n$ denotes the system state at time instance
+$n$, $y^n$ denotes the corresponding measurement, and $\Xi^n$ and
+$\Sigma^n$ are independent zero-mean multivariate Gaussian processes
+with covariance matrices $Q$ and $R$, respectively.</p>
+
+<h3 id="forecast-and-analysis">Forecast and analysis</h3>
+
+<p>Rather than relying on an exact covariance matrix, as in the traditional
+Kalman filter, or sigma points, as in the unscented Kalman filter, the
+Ensemble Kalman Filter (EnKF) employs a Monte Carlo method to estimate
+forecast and analysis statistics. This is achieved by considering an
+ensemble approach in both the forecast and the analysis.</p>
+
+<p>We assume that, at some time instance, we have obtained a forecast
+ensemble of size $q$:</p>
+
+\[Z^{f} = \left(z^{f}_{1}, z^{f}_{2}, \ldots, z^{f}_{q}\right)\]
+
+<p>where $z^{f}_{i}$ is the $i^\mathrm{th}$ ensemble member.</p>
+
+<p>The true state and covariance are not known, hence we approximate the
+statistics based on the available ensemble data. We do so as</p>
+
+\[\begin{split}
+\bar{z}^{f} &amp;= \frac{1}{q} \sum_{i=1}^{q} z^{f}_{i}, \\
+P^{f} &amp; = \frac{1}{q-1} \sum_{i=1}^{q} \left(z^{f}_{i} - \bar{z}^{f} \right) \left(z^{f}_{i} - \bar{z}^{f} \right)^{T}.
+\end{split}\]
+
+<p>The underlying assumption is that the forecast ensemble
+mean is the best forecast estimate of the state and that the ensemble
+spread describes the error between the best forecast and the actual
+state.</p>
+
+<p>The analysis step is also formulated in terms of ensembles. The
+observation ensemble must have mean equal to $y_{\text{obs}}$ and
+covariance equal to $R$,</p>
+
+\[y_{\mathrm{obs}, i} = y_{\text{obs}} + \epsilon_{i}, \quad \epsilon_{i} \sim \mathcal{N}(0, R)\]
+
+<p>The actual analysis then acts on each ensemble member as</p>
+
+\[z^{a}_{i} = z^{f}_{i} + K \left(y_{\text{obs}, i} - h(z^{f}_{i}) \right),\]
+
+<p>where $K$ is the classical Kalman gain determined by the approximations
+of the covariances as</p>
+
+\[K = P^{f}_{zy} \left(P^{f}_{yy}\right)^{-1}.\]
+
+<p>Here, the covariance approximations are given by</p>
+
+\[\begin{split}
+P^{f}_{zy} &amp;= \frac{1}{q-1} \sum_{i=1}^{q} \left(z^{f}_{i} - \bar{z}^{f} \right) \left(y^{f}_{i} - \bar{y}^{f} \right)^{T}, \\ 
+P^{f}_{yy} &amp;= \frac{1}{q-1} \sum_{i=1}^{q} \left(y^{f}_{i} - \bar{y}^{f} \right) \left(y^{f}_{i} - \bar{y}^{f} \right)^{T},
+\end{split}\]
+
+<p>where $y_i^f = h(z_i^f)$.</p>
+
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a> 
+Evensen, G. (2003). The ensemble Kalman filter: Theoretical formulation and practical implementation. Ocean dynamics, 53, 343-367.</p>
+
+<p><a id="2">[2]</a> 
+Gillijns, S., Mendoza, O. B., Chandrasekar, J., De Moor, B. L. R., Bernstein, D. S., &amp; Ridley, A. (2006, June). What is the ensemble Kalman filter and how well does it work?. In 2006 American control conference (pp. 6-pp). IEEE.</p>
+
+
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <p><strong>Sagy Ephrati</strong><br>
+          sagy@chalmers.se</p>
+        </div>
+        <div class="footer-right">
+          <p>
+            <a href="https://scholar.google.com/citations?user=JSh4h2YAAAAJ&hl=nl" target="_blank">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/sagy-ephrati-20a6b1108/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/sagye?tab=repositories" target="_blank">GitHub</a>
+          </p>
+        </div>
+      </div>
+      <p>&copy; 2025 Sagy Ephrati. Powered by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+    </footer>
+
+  </div>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Load previous preference
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme',
+      body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+</script>
+
+</body>
+</html>
