@@ -61,7 +61,7 @@ Publications by categories in reversed chronological order
    title="Probabilistic data-driven turbulence closure modeling by assimilating statistics"
    authors="<u>S. Ephrati</u>  (2025)"
    venue="J. Comp. Phys."
-   doi="https://arxiv.org/abs/2408.14838"
+   doi="https://doi.org/10.1016/j.jcp.2025.114234"
    pdf="assets/publications/Ephrati2025.pdf"
 %}
 
