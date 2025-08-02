@@ -60,9 +60,9 @@ Publications by categories in reversed chronological order
 {% include publication-entry.html
    title="Probabilistic data-driven turbulence closure modeling by assimilating statistics"
    authors="<u>S. Ephrati</u>  (2025)"
-   venue="Accepted for publication in J. Comp. Phys."
+   venue="J. Comp. Phys."
    doi="https://arxiv.org/abs/2408.14838"
-   pdf="assets/publications/Ephrati2024.pdf"
+   pdf="assets/publications/Ephrati2025.pdf"
 %}
 
 {% include publication-entry.html
