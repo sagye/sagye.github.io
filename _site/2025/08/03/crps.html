@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The continuous ranked probability score (CRPS) | Sagy Ephrati</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<!-- Load MathJax -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body>
+  <div>
+    <header padding: 1em 0;">
+	<div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 1em;">
+      <h1>Sagy Ephrati</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/notes.html">Notes</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/cv.html">CV</a>
+        <a href="/contact.html">Contact</a>
+        <button id="theme-toggle" style="
+        position: fixed;
+        top: 1em;
+        right: 1em;
+	padding: 0.5em 1.2em;
+	border: none;
+	border-radius: 6px;
+	background-color: #003366;
+	color: #ffffff;
+	font-size: 0.9rem;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	z-index: 1000;
+	">
+	🌓
+        </button>
+      </nav>
+</div>
+
+
+    </header>
+
+    <main style="max-width: 800px; margin: 2em auto; padding: 0 1em;">
+      <h1 id="the-continuous-ranked-probability-score-crps">The continuous ranked probability score (CRPS)</h1>
+
+<p>The continuous ranked probability score (CRPS) is a scoring function
+that compares forecast ensembles to observations based on the comparison
+of their cumulative distribution functions. It is a useful score to
+measure accuracy and sharpness in predicted ensembles. Stochastic models
+and Bayesian methods deal with distributions, hence the CRPS enables
+quantitative comparison of forecasts and can be used as a loss function
+to train models in machine learning.</p>
+
+<p>In what follows, we let $x_i, ~i=1,\ldots, M$ denote our forecast and
+let $y$ denote the observation. The ensemble has an empirical cumulative
+distribution function (cdf) $F$, defined as</p>
+
+\[F(s) = \frac{1}{M}\sum_{i=1}^M\mathbb{I}_{\{s\geq x_i\}}.\]
+
+<p>Based on the CDF, the CRPS is defined as</p>
+
+\[\mathrm{CRPS}(F, y) = \int_{-\infty}^\infty\! \left(F(s) - \mathbb{I}_{\{s\geq y\}}\right)^2\,\text{d}s.\]
+
+<p>The above definition allows us to compare a forecast distribution with a
+single observation. This is cleverly done by using the Heaviside step
+function $\mathbb{I}$, which serves as the empirical CDF of the
+observation. We see that the CRPS is zero if the forecast distribution
+is a Dirac delta at the observation $y$, i.e., if the forecast perfectly
+matches the observation. This may not always be possible; some
+discrepancy with the observation is expected. In that case, the squared
+term ensures that outliers are penalized strongly, hence both accuracy
+and sharpness lead to a low CRPS value. Furthermore, the CRPS is a
+<em>strictly proper scoring rule</em>, meaning that the lowest value is
+attained when the forecast ensemble exactly coincides with the
+observation.</p>
+
+<p>For our discrete forecast ensemble, the CRPS can be approximated by</p>
+
+\[\mathrm{CRPS}(x, y) = \frac{1}{M}\sum_{i=1}^M \left| x_i - y\right| - \frac{1}{2M^2}\sum_{i=1}^M \sum_{j=1}^M \left| x_i - x_j\right|.\]
+
+<p>The first term measures the average absolute error between the forecast
+and the observation (accuracy), while the second term penalizes spread
+within the ensemble (sharpness). This formula shows how the CRPS can be
+considered a probabilistic extension of the mean absolute error (MAE):
+when all $x_i$ have the same value (that is, when the distribution
+collapses to a single point), then the above equation reduces to the MAE
+<a href="#1">[1]</a>.</p>
+
+<h3 id="relation-to-other-scoring-rules">Relation to other scoring rules</h3>
+
+<p>The CRPS is related to other skill scores.</p>
+
+<p>The <em>Brier score</em> is a proper scoring rule for binary events. It
+essentially measures the mean squared error for events that can be
+categorized as ‘true’ or ‘false’, and can be used when classifying model
+results. The CRPS reduces to the Brier score in the case of binary
+outcomes.</p>
+
+<p>A multivariate generalization of the CRPS is the <em>energy score</em>
+<a href="#2">[2]</a>, which defines a strictly proper scoring rule
+for vector-valued ensembles. The sample energy score is computed
+analogously to the sample CRPS, replacing the absolute values by vector
+norms.</p>
+
+<p>In the scalar case, the CRPS is an extension of the <em>Wasserstein-1
+distance</em> that penalizes ensemble spread. Namely, the sample Wasserstein
+distance between the forecast ensemble and the delta distribution of the
+observation is the first term appearing in the sample CRPS. The addition
+of the dispersion penalty in the sample CRPS makes it a strictly proper
+scoring rule.</p>
+
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a> 
+Gel, Y., Raftery, A. E., and Gneiting, T. (2004). Calibrated probabilistic mesoscale weather field forecasting: The geostatistical output perturbation method. Journal of the American Statistical Association, 99(467), 575-583.</p>
+
+<p><a id="2">[2]</a> 
+Gneiting, T., Raftery, A. E., Westveld III, A. H., and Goldman, T. (2005). Calibrated probabilistic forecasting using ensemble model output statistics and minimum CRPS estimation. Monthly weather review, 133(5), 1098-1118.</p>
+
+
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <p><strong>Sagy Ephrati</strong><br>
+          sagy@chalmers.se</p>
+        </div>
+        <div class="footer-right">
+          <p>
+            <a href="https://scholar.google.com/citations?user=JSh4h2YAAAAJ&hl=nl" target="_blank">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/sagy-ephrati-20a6b1108/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/sagye?tab=repositories" target="_blank">GitHub</a>
+          </p>
+        </div>
+      </div>
+      <p>&copy; 2025 Sagy Ephrati. Powered by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+    </footer>
+
+  </div>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Load previous preference
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme',
+      body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+</script>
+
+</body>
+</html>
