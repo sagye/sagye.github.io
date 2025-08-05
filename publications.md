@@ -38,7 +38,7 @@ Publications by categories in reversed chronological order
    title="An exponential map free implicit midpoint method for stochastic Lie-Poisson systems"
    authors="<u>S. Ephrati</u> , E. Jansson, A. Lang and E. Luesink  (2024)"
    doi="https://arxiv.org/abs/2408.16701"
-   pdf="assets/publications//pdfs/EphratiJanssonLangLuesink2024.pdf"
+   pdf="assets/publications/EphratiJanssonLangLuesink2024.pdf"
 %}
 
 {% include publication-entry.html
