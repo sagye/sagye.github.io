@@ -21,6 +21,13 @@ Publications by categories in reversed chronological order
 <ul>
 
 {% include publication-entry.html
+   title="Diffusive behavior of transport noise on S2"
+   authors="<u>S. Ephrati</u>, E. Jansson and A. Papini (2025)"
+   doi="https://arxiv.org/abs/2508.02707"
+   pdf="assets/publications/EphratiJanssonPapini2025.pdf"
+%}
+
+{% include publication-entry.html
    title="Thermal quasi-geostrophic model on the sphere: derivation and structure-preserving simulation"
    authors="M. Roop and <u>S. Ephrati</u>  (2025)"
    doi="https://arxiv.org/abs/2505.17044"
