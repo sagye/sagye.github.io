@@ -21,17 +21,17 @@ Publications by categories in reversed chronological order
 <ul>
 
 {% include publication-entry.html
+   title="Trajectory learning for ensemble forecasts via the continuous ranked probability score: a Lorenz'96 case study"
+   authors="<u>S. Ephrati</u> and J. Woodfield (2025)"
+   doi="https://arxiv.org/abs/2508.21664"
+   pdf="assets/publications/EphratiWoodfield2025.pdf"
+%}
+
+{% include publication-entry.html
    title="Diffusive behavior of transport noise on S2"
    authors="<u>S. Ephrati</u>, E. Jansson and A. Papini (2025)"
    doi="https://arxiv.org/abs/2508.02707"
    pdf="assets/publications/EphratiJanssonPapini2025.pdf"
-%}
-
-{% include publication-entry.html
-   title="Thermal quasi-geostrophic model on the sphere: derivation and structure-preserving simulation"
-   authors="M. Roop and <u>S. Ephrati</u>  (2025)"
-   doi="https://arxiv.org/abs/2505.17044"
-   pdf="assets/publications/RoopEphrati2025.pdf"
 %}
 
 {% include publication-entry.html
@@ -64,6 +64,14 @@ Publications by categories in reversed chronological order
 
 ### 2025
 <ul>
+{% include publication-entry.html
+   title="Thermal quasi-geostrophic model on the sphere: derivation and structure-preserving simulation"
+   authors="M. Roop and <u>S. Ephrati</u>  (2025)"
+   venue="Phys. Fluids"
+   doi="https://doi.org/10.1063/5.0281814"
+   pdf="assets/publications/RoopEphrati2025.pdf"
+%}
+
 {% include publication-entry.html
    title="Probabilistic data-driven turbulence closure modeling by assimilating statistics"
    authors="<u>S. Ephrati</u>  (2025)"
