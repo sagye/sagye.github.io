@@ -28,13 +28,6 @@ Publications by categories in reversed chronological order
 %}
 
 {% include publication-entry.html
-   title="Diffusive behavior of transport noise on S2"
-   authors="<u>S. Ephrati</u>, E. Jansson and A. Papini (2025)"
-   doi="https://arxiv.org/abs/2508.02707"
-   pdf="assets/publications/EphratiJanssonPapini2025.pdf"
-%}
-
-{% include publication-entry.html
    title="Critical latitude in global quasi-geostrophic flow on a rotating sphere"
    authors="A.D. Franken, E. Luesink, <u>S. Ephrati</u> and B.J. Geurts (2025)"
    doi="https://arxiv.org/abs/2409.05432"
@@ -45,7 +38,7 @@ Publications by categories in reversed chronological order
    title="An exponential map free implicit midpoint method for stochastic Lie-Poisson systems"
    authors="<u>S. Ephrati</u> , E. Jansson, A. Lang and E. Luesink  (2024)"
    doi="https://arxiv.org/abs/2408.16701"
-   pdf="assets/publications/EphratiJanssonLangLuesink2024.pdf"
+   pdf="assets/publications/EphratiJanssonLangLuesink2025.pdf"
 %}
 
 {% include publication-entry.html
@@ -64,6 +57,14 @@ Publications by categories in reversed chronological order
 
 ### 2025
 <ul>
+{% include publication-entry.html
+   title="Diffusive behavior of transport noise on S2"
+   authors="<u>S. Ephrati</u>, E. Jansson and A. Papini (2025)"
+   doi="http://dx.doi.org/10.3934/jcd.2025008"
+   venue="J. Comput. Dyn."
+   pdf="assets/publications/EphratiJanssonPapini2025.pdf"
+%}
+
 {% include publication-entry.html
    title="Thermal quasi-geostrophic model on the sphere: derivation and structure-preserving simulation"
    authors="M. Roop and <u>S. Ephrati</u>  (2025)"
