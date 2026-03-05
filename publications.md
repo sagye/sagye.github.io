@@ -4,14 +4,14 @@ title: Publications
 permalink: /publications.html
 ---
 # Publications
-Publications by categories in reversed chronological order. A list of publications sorted per topic can be found here. ADD LINK TO RESEARCH PAGE
+Publications are shown here in reversed chronological order. A list of publications sorted per topic can be found [here]({{ '/research.html' | relative_url }}).
 
-<p style="margin-bottom: 1em;">
-  <a href="#preprints" style="margin: 0 15px; text-decoration:none; color:#007acc; font-weight:bold;">Preprints</a> |
-  <a href="#peer-reviewed-articles" style="margin-right: 15px; text-decoration:none; color:#007acc; font-weight:bold;">Peer-reviewed articles</a> |
-  <a href="#refereed-proceedings" style="margin: 0 15px; text-decoration:none; color:#007acc; font-weight:bold;">Refereed proceedings</a> |
-  <a href="#theses" style="margin-left: 15px; text-decoration:none; color:#007acc; font-weight:bold;">Theses</a>
-</p>
+<div class="pub-nav">
+  <a href="#preprints">Preprints</a> | 
+  <a href="#peer-reviewed-articles">Peer-reviewed articles</a> | 
+  <a href="#refereed-proceedings">Refereed proceedings</a>|
+  <a href="#theses">Theses</a>
+</div>
 
 
 

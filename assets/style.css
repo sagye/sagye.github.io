@@ -3,17 +3,27 @@ html, body {
   margin: 0;
 }
 
-body {
+<html lang="en">
+
+<!-- body {
   font-family: Georgia, serif;
   display: flex;
   flex-direction: column;
+} -->
+
+body {
+  /* 'Inter' or 'Helvetica' look very clean and modern */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #222;
 }
 
 .page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   padding: 1em;
 }
@@ -89,6 +99,152 @@ body.dark-mode footer a {
 body.dark-mode header a:hover,
 body.dark-mode footer a:hover {
   color: #ffffff;
+}
+
+/* Navigation bar at the top of publications */
+/* Navigation bar at the top of publications */
+.pub-nav {
+  background: #f0f4f8;        /* Light blue-grey background */
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;             /* Ensures it doesn't break on mobile */
+  gap: 10px;
+}
+
+.pub-nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #007acc;
+  padding: 5px 10px;
+  transition: color 0.2s;
+}
+
+.pub-nav a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* DARK MODE FIX: Ensure the box isn't bright white/grey in dark mode */
+body.dark-mode .pub-nav {
+  background: #2c2c2c;        /* Darker grey background */
+}
+
+body.dark-mode .pub-nav a {
+  color: #80b3ff;             /* Lighter blue for readability */
+}
+
+/* Tiny "Back to Top" links */
+.back-to-top {
+  text-align: right;
+  font-size: 0.8em;
+  margin-bottom: 20px;
+}
+
+/* Ensure the list has enough spacing */
+.pub-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+
+/* Style for Tables (Used in CV) */
+table {
+  width: 100%;
+  border-collapse: collapse;  /* Removes double borders */
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 8px;          /* Adds breathing room in cells */
+  border-bottom: 1px solid #eee; /* Subtle horizontal lines */
+}
+
+th {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Dark Mode adjustment for tables */
+body.dark-mode th {
+  color: #ffffff;
+}
+
+body.dark-mode td {
+  border-bottom: 1px solid #333; /* Darker lines for dark mode */
+}
+
+/* Optional: Make the first column (dates) slightly narrower */
+td:first-child {
+  width: 25%;
+  color: #666;
+  font-variant-numeric: tabular-nums; /* Keeps dates aligned */
+}
+
+body.dark-mode td:first-child {
+  color: #aaa;
+}
+
+/* Tighten space between research headers and the text below */
+h4 {
+  margin-bottom: 0.05rem; /* Reduces space below the header */
+  margin-top: 1.5rem;    /* Keeps a nice gap above the header to separate sections */
+}
+
+/* Optional: if you use ### headers elsewhere and want them tight too */
+h3 {
+  margin-bottom: 0.1rem;
+}
+
+h2 {
+  margin-bottom: 0.15rem;
+}
+
+hr {
+  border: 0;                  /* Remove default border */
+  border-top: 1px solid #ccc; /* Create a clean solid line */
+  margin: 0.5em 0;              /* Space above and below the line */
+  width: 100%;                /* Force it to span the full width */
+  display: block;             /* Ensure it behaves as a block element */
+}
+
+/* Ensure visibility in Dark Mode */
+body.dark-mode hr {
+  border-top: 1px solid #444;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word; /* Improves spacing between words */
+  hyphens: auto;           /* Prevents big gaps by breaking long words */
+  line-height: 1.6;        /* Crucial for readability */
+  margin-bottom: 1.2em;    /* Consistent spacing between paragraphs */
+}
+
+
+/* 1. Reduce the top margin of the list itself */
+ul, ol {
+  margin-top: 0.2em;   /* Default is usually 1em; this brings it much closer */
+  margin-bottom: 1em;  /* Keeps space below the list for the next paragraph */
+}
+
+/* 2. Target lists that follow a paragraph specifically */
+p + ul, p + ol {
+  margin-top: -0.5em;  /* This "pulls" the list up toward the preceding paragraph */
+}
+
+/* 3. If a list follows a header (like your research interests) */
+h4 + ul, h3 + ul {
+  margin-top: 0;       /* Removes the gap entirely when following a section title */
+}
+
+/* 4. Adjust the spacing between list items if they feel too "airy" */
+li {
+  margin-bottom: 0.3em;
 }
 
 
