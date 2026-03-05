@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications.html
 ---
 # Publications
-Publications by categories in reversed chronological order
+Publications by categories in reversed chronological order. A list of publications sorted per topic can be found here. ADD LINK TO RESEARCH PAGE
 
 <p style="margin-bottom: 1em;">
   <a href="#preprints" style="margin: 0 15px; text-decoration:none; color:#007acc; font-weight:bold;">Preprints</a> |

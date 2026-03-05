@@ -10,11 +10,25 @@ title: Home
 
 Welcome to my webpage!  
 
-<p>I'm a postdoctoral researcher in applied mathematics.  
-My research interests include geometric methods for fluid dynamics and other physical systems, stochastic modeling, and data assimilation. Broadly, I aim to develop and explore computational methods that leverage geometry, stochasticity, and data to improve accuracy and efficiency for predicting and understanding complex physical phenomena. </p>
+<p>I'm a postdoctoral researcher in applied mathematics working with Darryl Holm at Imperial College London.
 
 
-<p>Currently, I'm based at Chalmers University of Technology (Sweden) in the group of Klas Modin, working on geometric numerical hydrodynamics. Prior to this, I completed my PhD at the University of Twente (The Netherlands) on stochastic computational models for geophysical fluid dynamics, under the supervision of Bernard Geurts.  </p>
+My research interests include geometric methods for fluid dynamics and other physical systems, stochastic modelling, and data assimilation. Broadly, I aim to develop and explore computational methods that leverage geometry, stochasticity, and data to improve accuracy and efficiency for predicting and understanding complex physical phenomena. </p>
+
+
+Research interests
+
+ - Stochastic computational methods for fluid dynamics and magnetohydrodynamics
+ - Geometric (stochastic) integration
+ - Geometric numerical hydrodynamics
+ - Stochastic (turbulence) closure modelling
+ - Data assimilation
+
+
+
+Currently, I'm a research associate at Imperial College London working together with Prof. Darryl D. Holm. I'm a guest researcher at the Technical University of Munich (TUM) in the group of Prof. Christian Kühn.
+
+Previously, I was a postdoctoral researcher based at Chalmers University of Technology (Sweden) in the group of Prof. Klas Modin, working on geometric numerical hydrodynamics. Prior to this, I completed my PhD at the University of Twente (The Netherlands) on stochastic computational models for geophysical fluid dynamics, under the supervision of Prof. Bernard Geurts.  
 
 
 </div>
