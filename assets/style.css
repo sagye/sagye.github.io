@@ -135,20 +135,30 @@ header h1, nav {
 /* Navigation bar at the top of publications */
 .pub-nav {
   background: #f0f4f8;
-  padding: 12px;
+  padding: 15px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin: 20px auto 30px auto; /* Centers the bar itself */
+  
   display: flex;
-  justify-content: space-around;
+  justify-content: center;    /* Centering the links inside the bar */
+  gap: 25px;                  /* Consistent space between links */
   flex-wrap: wrap;
-  gap: 10px;
+  
+  width: 100%;                /* Take full 1000px width */
+  max-width: 1000px !important; 
+  box-sizing: border-box;
 }
 
 .pub-nav a {
   text-decoration: none;
   font-weight: bold;
   color: #007acc;
-  padding: 5px 10px;
+  white-space: nowrap;        /* Prevents a single link from breaking into 2 lines */
+}
+
+/* Ensure the Research page Markdown version also follows this */
+p.pub-nav {
+  max-width: 1000px !important;
 }
 
 /* Table styling for CV */
@@ -184,8 +194,32 @@ hr {
   width: 100%;
 }
 
+/* This pulls the list up to cancel out the paragraph's bottom margin */
+p + ul, p + ol {
+  margin-top: -1.2em !important; 
+}
+/* Ensure the list items themselves aren't too spaced out */
+li {
+  margin-bottom: 0.1em;
+}
+
+/* Styling for the Back to Top link */
+.back-to-top {
+  display: block;      /* Necessary to allow right-alignment */
+  text-align: right;   /* Moves it to the right */
+  font-size: 0.85em;   /* Makes it slightly smaller than body text */
+  margin-top: 2em;     /* Adds space above it */
+  text-decoration: none;
+  color: #888;         /* Subtle grey color */
+}
+
+.back-to-top:hover {
+  color: #007acc;      /* Turns blue on hover */
+  text-decoration: underline;
+}
+
 /* Dark Mode fixes */
 body.dark-mode { background-color: #121212; color: #e0e0e0; }
 body.dark-mode footer { background-color: #1a1a1a; border-color: #333; }
-body.dark-mode a { color: #80b3ff; }
+body.dark-mode a { color: #80b3ff !important; }
 body.dark-mode .pub-nav { background: #2c2c2c; }
