@@ -4,7 +4,7 @@ title: CV
 permalink: /cv.html
 ---
 
-## Curriculum Vitae
+# Curriculum Vitae
 
 You can download my full CV [here](assets/CV.pdf).
 

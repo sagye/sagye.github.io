@@ -4,7 +4,7 @@ title: Contact
 permalink: /contact.html
 ---
 
-## Contact Information
+# Contact Information
 
 The best way to reach me is via email:  
 **[sephrati 'at' ic.ac.uk](mailto:sephrati@ic.ac.uk)**
@@ -22,7 +22,7 @@ United Kingdom
 Technical University of Munich (TUM)  
 School of Computation, Information and Technology  
 Department of Mathematics  
-Boltzmannstr. 3, Room 03.04.059 
+Boltzmannstr. 3, Room 03.04.059  
 85748 Garching bei München  
 Germany  
 

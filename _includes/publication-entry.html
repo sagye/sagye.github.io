@@ -3,10 +3,10 @@
 
   {% if include.title and include.doi %}
     <a href="{{ include.doi }}" target="_blank" style="color: #003366; font-weight: bold; text-decoration: none;">
-      {{ include.title }}
+      <span class="pub-title">{{ include.title }}</span>
     </a><br>
   {% elsif include.title %}
-    <span style="color: #003366; font-weight: bold;">{{ include.title }}</span><br>
+    <span class="pub-title">{{ include.title }}</span><br>
   {% endif %}
 
   {% if include.authors %}
