@@ -63,7 +63,8 @@ This theoretical rigor enables the use of precise numerics as a tool to study hy
 ([J. Comput. Dyn. 2025](http://dx.doi.org/10.3934/jcd.2025008){:target="_blank"})
  - Casimir-preserving method for global quasi-geostrophic flow
 ([J. Comp. Phys. 2025](https://doi.org/10.1016/j.jcp.2025.114155){:target="_blank"},
-[ArXiv 2025](https://arxiv.org/abs/2409.05432){:target="_blank"})
+[ArXiv 2025](https://arxiv.org/abs/2409.05432){:target="_blank"},
+[J. Comput. Dyn. 2026](https://doi.org/10.3934/jcd.2026005){:target="_blank"})
  - Derivation and geometric method for (thermal) quasi-geostrophic flow
 ([ArXiv 2024](https://arxiv.org/abs/2402.13707){:target="_blank"},
 [Phys. Fluids 2025](https://doi.org/10.1063/5.0281814){:target="_blank"})

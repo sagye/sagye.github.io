@@ -55,6 +55,19 @@ Publications are shown here in reversed chronological order. A list of publicati
   
 ## Peer-Reviewed Articles {#peer-reviewed-articles}
 
+### 2026
+<ul>
+{% include publication-entry.html
+   title="Convergence of Zeitlin truncation for multilayer critical latitude predictions of quasi-geostrophic flow on an earth-like planet"
+   authors="A.D. Franken, <u>S. Ephrati</u>, E. Luesink and B.J. Geurts (2026)"
+   doi="https://doi.org/10.3934/jcd.2026005"
+   venue="J. Comput. Dyn."
+   pdf="assets/publications/FrankenEphratiLuesinkGeurts2026.pdf"
+%}
+</ul>
+
+
+
 ### 2025
 <ul>
 {% include publication-entry.html
