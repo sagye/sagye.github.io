@@ -21,6 +21,13 @@ Publications are shown here in reversed chronological order. A list of publicati
 <ul>
 
 {% include publication-entry.html
+   title="Minimum-enstrophy solutions in topographic quasi-geostrophic flow on the rotating sphere"
+   authors="<u>S. Ephrati</u> and E. Jansson (2026)"
+   doi="https://arxiv.org/abs/2604.25600"
+   pdf="assets/publications/EphratiJansson2026.pdf"
+%}
+
+{% include publication-entry.html
    title="Trajectory learning for ensemble forecasts via the continuous ranked probability score: a Lorenz'96 case study"
    authors="<u>S. Ephrati</u> and J. Woodfield (2025)"
    doi="https://arxiv.org/abs/2508.21664"
