@@ -25,7 +25,8 @@ Numerical simulations of turbulent systems and complex low-order "toy models" ar
  - General framework for assimilating statistics into statistically stationary turbulent flow
 ([J. Comp. Phys. 2025](https://doi.org/10.1016/j.jcp.2025.114234){:target="_blank"})
  - Structure-preserving stochastic modelling based on geometric mechanics
-([J. Adv. Model. Earth Syst. 2023](https://doi.org/10.1029/2022MS003268){:target="_blank"})
+([J. Adv. Model. Earth Syst. 2023](https://doi.org/10.1029/2022MS003268){:target="_blank"},
+[ArXiv 2026](https://arxiv.org/abs/2606.24275){:target="_blank"})
  - Continuous data assimilation ('nudging') of energy spectra to observed values
 ([Phys. Fluids 2023](https://doi.org/10.1063/5.0156942){:target="_blank"},
 [J. Fluid Mech. 2023](https://doi.org/10.1017/jfm.2023.816){:target="_blank"},
@@ -68,6 +69,8 @@ This theoretical rigor enables the use of precise numerics as a tool to study hy
  - Derivation and geometric method for (thermal) quasi-geostrophic flow
 ([ArXiv 2024](https://arxiv.org/abs/2402.13707){:target="_blank"},
 [Phys. Fluids 2025](https://doi.org/10.1063/5.0281814){:target="_blank"})
+ - Study of minimum-enstrophy equilibria for quasi-geostrophic flow over topography
+([ArXiv 2026](https://arxiv.org/abs/2604.25600){:target="_blank"})
 
 
   

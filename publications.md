@@ -21,6 +21,13 @@ Publications are shown here in reversed chronological order. A list of publicati
 <ul>
 
 {% include publication-entry.html
+   title="Numerical comparison of energy- versus circulation-preserving stochastic vortex dynamics"
+   authors="<u>S. Ephrati</u> and D.D. Holm (2026)"
+   doi="https://arxiv.org/abs/2606.24275"
+   pdf="assets/publications/EphratiHolm2026.pdf"
+%}
+
+{% include publication-entry.html
    title="Minimum-enstrophy solutions in topographic quasi-geostrophic flow on the rotating sphere"
    authors="<u>S. Ephrati</u> and E. Jansson (2026)"
    doi="https://arxiv.org/abs/2604.25600"

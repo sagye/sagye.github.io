@@ -6,7 +6,7 @@ permalink: /cv.html
 
 # Curriculum Vitae
 
-You can download my full CV [here](assets/CV.pdf).
+You can download my full CV [here](assets/CV.pdf){:target="_blank"}.
 
 
 #### Brief CV
