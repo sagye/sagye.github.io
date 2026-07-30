@@ -44,7 +44,7 @@ Numerical simulations of dynamical systems profit from integration schemes that 
 
 **Contributions:**
  - Stochastic Lie-Poisson integration 
-([Adv. Contin. Discrete Models](https://doi.org/10.1186/s13662-023-03796-y){:target="_blank"},
+([Adv. Contin. Discrete Models 2024](https://doi.org/10.1186/s13662-023-03796-y){:target="_blank"},
 [ArXiv 2024](https://arxiv.org/abs/2408.16701){:target="_blank"})
  - A symplectic integrator for stochastic spin systems
 ([Phys. Rev. E 2025](https://doi.org/10.1103/PhysRevE.111.054201){:target="_blank"})
